@@ -85,10 +85,10 @@ def generar_vector(tipo, n):
     Vector tipo 2: descendiente
     Vector tipo 3: aleatorio
     '''
-    if tipo <= 2:
+    if tipo in (1, 2):
         vector = numpy.arange(0, n)
-    if tipo == 2:
-        vector = numpy.flipud(vector)
+        if tipo == 2:
+            vector = numpy.flipud(vector)
     elif tipo == 3:
         vector = aleatorio(n)
 
@@ -213,3 +213,5 @@ print()
 # TODO: hay que modificar calcular_tiempo() porque cuando vuelve a medir el tiempo en el bucle
 #       siempre usa un vector aleatorio en vez del apropiado. Para ello se ha creado la función
 #       generar_vector()
+
+# TODO: hay que encontrar las cotas ajustadas, que de eso va la práctica
