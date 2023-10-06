@@ -128,23 +128,23 @@ def test():
 
 # Ejercicio 3
 
-header_n  = ['n', 't(n) (ns)', 't(n)/n**0.8', ' t(n)/n', 't(n)/n**1.2']
-header_n2 = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/n**2.2']
-
 ascIns,  ascShell  = PrettyTable(), PrettyTable()
 descIns, descShell = PrettyTable(), PrettyTable()
 randIns, randShell = PrettyTable(), PrettyTable()
 
-ascIns.field_names,  ascShell.field_names  = header_n, header_n
-descIns.field_names, descShell.field_names = header_n2, header_n
-randIns.field_names, randShell.field_names = header_n2, header_n
+ascIns.field_names    = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.05', 't(n)/n**1.1']
+ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n**0.8', ' t(n)/n', 't(n)/n**1.2']
+descIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2', 't(n)/n**2.2']
+descShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.1', 't(n)/n**1.2']
+randIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/n**2.2']
+randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.1', 't(n)/n**1.2']
 
 n = 128
 for i in range(8):
     vector = generar_vector(1, n)
 
     t = calcular_tiempo(ins_sort, vector, 1)
-    ascIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**0.8, t/n, t/n**1.2])
+    ascIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.05, t/n**1.1])
 
     t = calcular_tiempo(shell_sort_hibbard, vector, 1)
     ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**0.8, t/n, t/n**1.2])
@@ -156,10 +156,10 @@ for i in range(8):
     vector = generar_vector(2, n)
 
     t = calcular_tiempo(ins_sort, vector, 2)
-    descIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**2.0, t/n**2.2])
+    descIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**2, t/n**2.2])
 
     t = calcular_tiempo(shell_sort_hibbard, vector, 2)
-    descShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**0.8, t/n, t/n**1.2])
+    descShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.1, t/n**1.2])
 
     n *= 2
 
@@ -171,7 +171,7 @@ for i in range(8):
     randIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**2.0, t/n**2.2])
 
     t = calcular_tiempo(shell_sort_hibbard, vector, 3)
-    randShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**0.8, t/n, t/n**1.2])
+    randShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.1, t/n**1.2])
 
     n *= 2
 
@@ -204,9 +204,5 @@ print('Los datos con un asterisco (*) indican que los tiempos fueron medidos de 
       'ya que no cumplían con el umbral de confianza de 500 microsegundos. El bucle que',
       'calcula la media se iteró 10 veces.', sep = '\n')
 print()
-
-# TODO: hay que modificar calcular_tiempo() porque cuando vuelve a medir el tiempo en el bucle
-#       siempre usa un vector aleatorio en vez del apropiado. Para ello se ha creado la función
-#       generar_vector()
 
 # TODO: hay que encontrar las cotas ajustadas, que de eso va la práctica

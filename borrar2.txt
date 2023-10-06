@@ -1,6 +1,6 @@
-ascIns está subestimada con t(n)/n**0.8
-ascShell está sobreestimada con t(n)/n**0.8
-descIns
-descShell
-randIns
-randShell
+ascIns parece 1.05
+ascShell parece 1.2
+descIns parece 2
+descShell parece 1.1
+randIns es 2
+randShell parece 1.1
