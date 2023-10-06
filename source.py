@@ -13,17 +13,6 @@ def hibbard_increments(array_length):
         k += 1
         gap = 2**k - 1
     return increments
-raiser
-raiser
-repr
-lkjhgfd
-reprrr
-
-reprrr
-g
-r
-r
-
 
 def shell_sort_hibbard(v):
     increments = hibbard_increments(len(v))
