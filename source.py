@@ -1,5 +1,5 @@
 # Iván Moure Pérez, Pablo Hernández Martínez
-# i.moure@udc.es, pablo.hernandez.martinez@udc.esasfgj
+# i.moure@udc.es, pablo.hernandez.martinez@udc.es
 
 import random, time, numpy
 from prettytable import PrettyTable
@@ -204,5 +204,3 @@ print('Los datos con un asterisco (*) indican que los tiempos fueron medidos de 
       'ya que no cumplían con el umbral de confianza de 500 microsegundos. El bucle que',
       'calcula la media se iteró 10 veces.', sep = '\n')
 print()
-
-# TODO: hay que encontrar las cotas ajustadas, que de eso va la práctica
