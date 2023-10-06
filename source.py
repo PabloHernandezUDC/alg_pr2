@@ -1,5 +1,5 @@
 # Iván Moure Pérez, Pablo Hernández Martínez
-# i.moure@udc.es, pablo.hernandez.martinez@udc.es
+# i.moure@udc.es, pablo.hernandez.martinez@udc.esasfgj
 
 import random, time, numpy
 from prettytable import PrettyTable
