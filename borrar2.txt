@@ -1,0 +1,6 @@
+ascIns está subestimada con t(n)/n**0.8
+ascShell está sobreestimada con t(n)/n**0.8
+descIns
+descShell
+randIns
+randShell
