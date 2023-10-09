@@ -1,6 +1,6 @@
 ascIns parece 1.05
 ascShell parece 1.2
-descIns parece 2
+descIns parece 2.05
 descShell parece 1.1
 randIns es 2
 randShell parece 1.1

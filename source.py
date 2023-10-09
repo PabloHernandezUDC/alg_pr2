@@ -133,11 +133,13 @@ descIns, descShell = PrettyTable(), PrettyTable()
 randIns, randShell = PrettyTable(), PrettyTable()
 
 ascIns.field_names    = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.05', 't(n)/n**1.1']
-ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n**0.8', ' t(n)/n', 't(n)/n**1.2']
-descIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2', 't(n)/n**2.2']
+ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n**1.1', ' t(n)/1.2', 't(n)/n**1.3']
+descIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**2', ' t(n)/n**2.05', 't(n)/n**2.1']
 descShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.1', 't(n)/n**1.2']
 randIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/n**2.2']
 randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.1', 't(n)/n**1.2']
+
+totalStart = time.perf_counter_ns()
 
 n = 128
 for i in range(8):
@@ -147,7 +149,7 @@ for i in range(8):
     ascIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.05, t/n**1.1])
 
     t = calcular_tiempo(shell_sort_hibbard, vector, 1)
-    ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**0.8, t/n, t/n**1.2])
+    ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.1, t/n**1.2, t/n**1.3])
 
     n *= 2
 
@@ -156,7 +158,7 @@ for i in range(8):
     vector = generar_vector(2, n)
 
     t = calcular_tiempo(ins_sort, vector, 2)
-    descIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**2, t/n**2.2])
+    descIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**2, t/n**2.05, t/n**2.1])
 
     t = calcular_tiempo(shell_sort_hibbard, vector, 2)
     descShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.1, t/n**1.2])
@@ -174,6 +176,8 @@ for i in range(8):
     randShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.1, t/n**1.2])
 
     n *= 2
+
+totalFinish = time.perf_counter_ns()
 
 print()
 print('Ordenacion por inserción con inicialización ascendiente.')
@@ -198,6 +202,9 @@ print()
 
 print('Ordenacion Shell con inicialización aleatoria.')
 print(randShell)
+print()
+
+print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
 print()
 
 print('Los datos con un asterisco (*) indican que los tiempos fueron medidos de nuevo',
