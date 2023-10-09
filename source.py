@@ -126,7 +126,7 @@ def test():
 # Ejercicio 2
 #test()
 
-# Ejercicio 3
+# Ejercicio 3 y 4
 
 ascIns,  ascShell  = PrettyTable(), PrettyTable()
 descIns, descShell = PrettyTable(), PrettyTable()
