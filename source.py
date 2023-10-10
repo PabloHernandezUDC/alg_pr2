@@ -4,6 +4,13 @@
 import random, time, numpy
 from prettytable import PrettyTable
 
+# Ejercicio 1
+'''
+En este ejercicio, se definen algoritmos de ordenación y funciones auxiliares que se utilizarán posteriormente para analizar su rendimiento.
+'''
+print("\n\n***Ejercicio 1***\n")
+
+# hibbard_increments(array_length): Genera una secuencia de incrementos de Hibbard hasta un tamaño dado.
 def hibbard_increments(array_length):
     increments = []
     k = 1
@@ -13,22 +20,13 @@ def hibbard_increments(array_length):
         k += 1
         gap = 2**k - 1
     return increments
-raiser
-raiser
-repr
-lkjhgfd
-reprrr
 
-reprrr
-g
-r
-r
-
-
+# shell_sort_hibbard(v): Ordena un vector utilizando el algoritmo Shell con la secuencia de incrementos de Hibbard.
 def shell_sort_hibbard(v):
     increments = hibbard_increments(len(v))
     return shell_sort_aux(v, increments)
 
+# shell_sort_aux(v, increments): Ordena un vector utilizando el algoritmo de ordenación Shell con una secuencia de incrementos dada.
 def shell_sort_aux(v, increments):
     for increment in increments:
         for i in range(increment, len(v)):
@@ -44,6 +42,7 @@ def shell_sort_aux(v, increments):
             v[j] = tmp
     return v
 
+# ins_sort(v): Ordena un vector utilizando el algoritmo de inserción.
 def ins_sort(v):
     n = len(v)
     for i in range(1, n):
@@ -55,12 +54,14 @@ def ins_sort(v):
         v[j+1] = x
     return v
 
+# aleatorio(n): Genera un vector de números aleatorios de longitud n.
 def aleatorio(n):
     v = list(range(n))
     for i in v:
         v[i] = random.randint(-n, n)
     return v
 
+# calcular_tiempo(func, v, tipo): Mide el tiempo de ejecución de una función con un vector dado y un tipo de inicialización.
 def calcular_tiempo(func, v, tipo):
     start = time.perf_counter_ns()
     func(v)
@@ -90,12 +91,13 @@ def calcular_tiempo(func, v, tipo):
 
     return t
 
+# generar_vector(tipo, n): Genera un vector de un tipo específico (ascendente, descendente o aleatorio) de longitud n.
 def generar_vector(tipo, n):
-    '''
-    Vector tipo 1: ascendiente
-    Vector tipo 2: descendiente
-    Vector tipo 3: aleatorio
-    '''
+    
+    # Vector tipo 1: ascendiente
+    # Vector tipo 2: descendiente
+    # Vector tipo 3: aleatorio
+    
     if tipo in (1, 2):
         vector = numpy.arange(0, n)
         if tipo == 2:
@@ -105,6 +107,7 @@ def generar_vector(tipo, n):
 
     return vector
 
+# test(): Realiza pruebas de ordenación con vectores aleatorios e imprime los resultados.
 def test():
     n = 5
     vector = aleatorio(n)
@@ -135,30 +138,41 @@ def test():
     print()
 
 # Ejercicio 2
-#test()
+'''
+En este ejercicio, se ejecuta la función test() para realizar pruebas de ordenación con vectores aleatorios.
+'''
+print("***Ejercicio 2*** ")
+test()
 
 # Ejercicio 3
-
+'''
+En este ejercicio, se realiza un análisis de rendimiento de los algoritmos de ordenación en diferentes configuraciones y se crean tablas
+para registrar los resultados.
+'''
+print("\n***Ejercicio 3*** \n")
+# Creamos las 6 tablas pedidas
 ascIns,  ascShell  = PrettyTable(), PrettyTable()
 descIns, descShell = PrettyTable(), PrettyTable()
 randIns, randShell = PrettyTable(), PrettyTable()
 
-ascIns.field_names    = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.05', 't(n)/n**1.1']
-ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n**0.8', ' t(n)/n', 't(n)/n**1.2']
-descIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2', 't(n)/n**2.2']
-descShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.1', 't(n)/n**1.2']
+# Establecemos los nombres de los distintos parámetros de las tablas
+ascIns.field_names    = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.04', 't(n)/n**1.08']
+ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.2', 't(n)/n**1.4']
+descIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**1.99', 't(n)/n**2.18']
+descShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.11', 't(n)/n**1.22']
 randIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/n**2.2']
-randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.1', 't(n)/n**1.2']
+randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.09', 't(n)/n**1.18']
 
+# A continuación, se realizan cálculos de tiempo y se llenan las tablas con los resultados...
 n = 128
 for i in range(8):
     vector = generar_vector(1, n)
 
     t = calcular_tiempo(ins_sort, vector, 1)
-    ascIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.05, t/n**1.1])
+    ascIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.04, t/n**1.08])
 
     t = calcular_tiempo(shell_sort_hibbard, vector, 1)
-    ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**0.8, t/n, t/n**1.2])
+    ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.2, t/n**1.4])
 
     n *= 2
 
@@ -167,10 +181,10 @@ for i in range(8):
     vector = generar_vector(2, n)
 
     t = calcular_tiempo(ins_sort, vector, 2)
-    descIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**2, t/n**2.2])
+    descIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**1.99, t/n**2.18])
 
     t = calcular_tiempo(shell_sort_hibbard, vector, 2)
-    descShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.1, t/n**1.2])
+    descShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.11, t/n**1.22])
 
     n *= 2
 
@@ -182,10 +196,11 @@ for i in range(8):
     randIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**2.0, t/n**2.2])
 
     t = calcular_tiempo(shell_sort_hibbard, vector, 3)
-    randShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.1, t/n**1.2])
+    randShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.09, t/n**1.18])
 
     n *= 2
 
+# Mostramos las tablas (ya completas) con su correspondiente nombre
 print()
 print('Ordenacion por inserción con inicialización ascendiente.')
 print(ascIns)
@@ -211,7 +226,8 @@ print('Ordenacion Shell con inicialización aleatoria.')
 print(randShell)
 print()
 
+# ACLARACIÓN
 print('Los datos con un asterisco (*) indican que los tiempos fueron medidos de nuevo',
       'ya que no cumplían con el umbral de confianza de 500 microsegundos. El bucle que',
-      'calcula la media se iteró 10 veces.', sep = '\n')
+      'calcula la media se iteró 100 veces.', sep = '\n')
 print()
