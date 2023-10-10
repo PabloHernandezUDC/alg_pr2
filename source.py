@@ -149,7 +149,7 @@ test()
 En este ejercicio, se realiza un análisis de rendimiento de los algoritmos de ordenación en diferentes configuraciones y se crean tablas
 para registrar los resultados.
 '''
-print("\n***Ejercicio 3*** \n")
+print("\n***Ejercicio 3*** ")
 # Creamos las 6 tablas pedidas
 ascIns,  ascShell  = PrettyTable(), PrettyTable()
 descIns, descShell = PrettyTable(), PrettyTable()
@@ -233,8 +233,6 @@ print()
 print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
 print()
 
-print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
-print()
 
 # ACLARACIÓN
 print('Los datos con un asterisco (*) indican que los tiempos fueron medidos de nuevo',
