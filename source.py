@@ -1,7 +1,8 @@
 # Iván Moure Pérez, Pablo Hernández Martínez
 # i.moure@udc.es, pablo.hernandez.martinez@udc.es
 
-import random, time, numpy
+import random, time
+import numpy as np
 from prettytable import PrettyTable
 
 # EJERCICIO Nº1
@@ -99,9 +100,9 @@ def generar_vector(tipo, n):
     # Vector tipo 3: aleatorio
     
     if tipo in (1, 2):
-        vector = numpy.arange(0, n)
+        vector = np.arange(0, n)
         if tipo == 2:
-            vector = numpy.flipud(vector)
+            vector = np.flipud(vector)
     elif tipo == 3:
         vector = aleatorio(n)
 
@@ -241,3 +242,65 @@ print()
 print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
 print()
 
+# EJERCICIO Nº4
+'''
+En este ejercicio, se calcula empíricamente la complejidad de los algoritmos de ordenación y se ajustan los
+resultados a la complejidad esperada.
+'''
+print("\n\n***Ejercicio 4*** ")
+# Función para calcular la complejidad empírica
+def calcular_complejidad_empirica(algoritmo, situacion_inicial, n_min, n_max, paso):
+    resultados = []
+    for n in range(n_min, n_max + 1, paso):
+        vector = generar_vector(situacion_inicial, n)
+        tiempo = calcular_tiempo(algoritmo, vector, situacion_inicial)
+        resultados.append((n, tiempo))
+    return resultados
+
+# Función para ajustar los resultados a una complejidad
+def ajustar_complejidad(resultados, complejidad_esperada):
+    n_values = np.array([result[0] for result in resultados])
+    tiempos = np.array([result[1] for result in resultados])
+    # Ajustar los datos a una función de complejidad polinómica
+    coeficientes = np.polyfit(n_values, tiempos, deg=len(complejidad_esperada) - 1)
+    # Imprimir los coeficientes obtenidos
+    print(f"Coeficientes del ajuste: {coeficientes}")
+    # Comparar con la complejidad esperada
+    print(f"Complejidad esperada: {complejidad_esperada}")
+    # Ejemplo de cómo calcular la complejidad ajustada
+    complejidad_ajustada = f"{coeficientes[-1]:.2e}"
+    for i in range(len(coeficientes) - 1):
+        complejidad_ajustada += f" + {coeficientes[i]:.2e} * n^{len(coeficientes) - i - 2}"
+    print(f"Complejidad ajustada: {complejidad_ajustada}")
+    return coeficientes
+
+# Realizamos los cálculos para Ordenación por Inserción con inicialización ascendente
+print("****Ordenación por Inserción con inicialización ascendente****")
+resultados_ascendente_ins = calcular_complejidad_empirica(ins_sort, 1, 10, 1000, 10)
+ajustar_complejidad(resultados_ascendente_ins, "O(n^2)")
+print("\n\n")
+# Realizamos los cálculos para Ordenación Shell con inicialización ascendente
+print("****Ordenación Shell con inicialización ascendente****")
+resultados_ascendente_shell = calcular_complejidad_empirica(shell_sort_hibbard, 1, 10, 1000, 10)
+ajustar_complejidad(resultados_ascendente_shell, "O(?)")
+print("\n\n")
+# Realizamos los cálculos para Ordenación por Inserción con inicialización descendente
+print("****Ordenación por Inserción con inicialización ascendente****")
+resultados_descendente_ins = calcular_complejidad_empirica(ins_sort, 1, 10, 1000, 10)
+ajustar_complejidad(resultados_descendente_ins, "O(n^2)")
+print("\n\n")
+# Realizamos los cálculos para Ordenación Shell con inicialización descendente
+print("****Ordenación Shell con inicialización ascendente****")
+resultados_descendente_shell = calcular_complejidad_empirica(shell_sort_hibbard, 1, 10, 1000, 10)
+ajustar_complejidad(resultados_descendente_shell, "O(?)")
+print("\n\n")
+# Realizamos los cálculos para Ordenación por Inserción con inicialización aleatoria
+print("****Ordenación por Inserción con inicialización ascendente****")
+resultados_aleatoria_ins = calcular_complejidad_empirica(ins_sort, 1, 10, 1000, 10)
+ajustar_complejidad(resultados_aleatoria_ins, "O(n^2)")
+print("\n\n")
+# Realizamos los cálculos para Ordenación Shell con inicialización aleatoria
+print("****Ordenación Shell con inicialización ascendente****")
+resultados_aleatoria_shell = calcular_complejidad_empirica(shell_sort_hibbard, 1, 10, 1000, 10)
+ajustar_complejidad(resultados_aleatoria_shell, "O(?)")
+print("\n\n")
