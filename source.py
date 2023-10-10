@@ -8,7 +8,7 @@ from prettytable import PrettyTable
 '''
 En este ejercicio, se definen algoritmos de ordenación y funciones auxiliares que se utilizarán posteriormente para analizar su rendimiento.
 '''
-print("\n\n***Ejercicio 1***\n")
+#print("\n\n***Ejercicio 1***\n")
 
 # hibbard_increments(array_length): Genera una secuencia de incrementos de Hibbard hasta un tamaño dado.
 def hibbard_increments(array_length):
