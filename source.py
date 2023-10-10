@@ -4,7 +4,7 @@
 import random, time, numpy
 from prettytable import PrettyTable
 
-# Ejercicio 1
+# EJERCICIO Nº1
 '''
 En este ejercicio, se definen algoritmos de ordenación y funciones auxiliares que se utilizarán posteriormente para analizar su rendimiento.
 '''
@@ -137,30 +137,36 @@ def test():
     
     print()
 
-# Ejercicio 2
+# EJERCICIO Nº2
 '''
 En este ejercicio, se ejecuta la función test() para realizar pruebas de ordenación con vectores aleatorios.
 '''
-print("***Ejercicio 2*** ")
+print("\n\n***Ejercicio 2*** ")
 test()
 
-# Ejercicio 3
+# EJERCICIO Nº3
 '''
 En este ejercicio, se realiza un análisis de rendimiento de los algoritmos de ordenación en diferentes configuraciones y se crean tablas
 para registrar los resultados.
 '''
-print("\n***Ejercicio 3*** ")
+print("\n\n***Ejercicio 3*** ")
 # Creamos las 6 tablas pedidas
 ascIns,  ascShell  = PrettyTable(), PrettyTable()
 descIns, descShell = PrettyTable(), PrettyTable()
 randIns, randShell = PrettyTable(), PrettyTable()
 
 # Establecemos los nombres de los distintos parámetros de las tablas
+ascIns.title          = 'Ordenacion por inserción con inicialización ascendiente'
 ascIns.field_names    = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.04', 't(n)/n**1.08']
+ascShell.title        = 'Ordenacion Shell con inicialización ascendiente'
 ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.2', 't(n)/n**1.4']
+descIns.title         = 'Ordenacion por inserción con inicialización descendiente'
 descIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**1.99', 't(n)/n**2.18']
+descShell.title       = 'Ordenacion Shell con inicialización descendiente'
 descShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.11', 't(n)/n**1.22']
+randIns.title         = 'Ordenacion por inserción con inicialización aleatoria'
 randIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/n**2.2']
+randShell.title       = 'Ordenacion Shell con inicialización aleatoria'
 randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.09', 't(n)/n**1.18']
 
 # Calculamos tiempo de ejecución (inicio)
@@ -206,29 +212,28 @@ for i in range(8):
 # Calculamos tiempo de ejecución (final)
 totalFinish = time.perf_counter_ns()
 
+# Aclaración sobre asteriscos
+print('\nLos datos que se muestran acompañados de un asterisco (*) indican que los tiempos',
+      'fueron medidos de nuevo ya que no cumplían con el umbral de confianza de 500 microsegundos.',
+      'El bucle que calcula la media se iteró 100 veces.', sep = '\n')
+
 # Mostramos las tablas (ya completas) con su correspondiente nombre
 print()
-print('Ordenacion por inserción con inicialización ascendiente.')
 print(ascIns)
 print()
 
-print('Ordenacion Shell con inicialización ascendiente.')
 print(ascShell)
 print()
 
-print('Ordenacion por inserción con inicialización descendiente.')
 print(descIns)
 print()
 
-print('Ordenacion Shell con inicialización descendiente.')
 print(descShell)
 print()
 
-print('Ordenacion por inserción con inicialización aleatoria.')
 print(randIns)
 print()
 
-print('Ordenacion Shell con inicialización aleatoria.')
 print(randShell)
 print()
 
@@ -236,9 +241,3 @@ print()
 print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
 print()
 
-
-# ACLARACIÓN
-print('Los datos con un asterisco (*) indican que los tiempos fueron medidos de nuevo',
-      'ya que no cumplían con el umbral de confianza de 500 microsegundos. El bucle que',
-      'calcula la media se iteró 100 veces.', sep = '\n')
-print()
