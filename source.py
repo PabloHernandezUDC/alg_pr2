@@ -8,7 +8,7 @@ from prettytable import PrettyTable
 '''
 En este ejercicio, se definen algoritmos de ordenación y funciones auxiliares que se utilizarán posteriormente para analizar su rendimiento.
 '''
-print("\n\n***Ejercicio 1***\n")
+#print("\n\n***Ejercicio 1***\n")
 
 # hibbard_increments(array_length): Genera una secuencia de incrementos de Hibbard hasta un tamaño dado.
 def hibbard_increments(array_length):
@@ -141,8 +141,8 @@ def test():
 '''
 En este ejercicio, se ejecuta la función test() para realizar pruebas de ordenación con vectores aleatorios.
 '''
-print("***Ejercicio 2*** ")
-test()
+#print("***Ejercicio 2*** ")
+#test()
 
 # Ejercicio 3
 '''
@@ -235,7 +235,6 @@ print()
 # Mostramos el tiempo de ejecución
 print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
 print()
-
 
 # ACLARACIÓN
 print('Los datos con un asterisco (*) indican que los tiempos fueron medidos de nuevo',
