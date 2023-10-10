@@ -163,6 +163,7 @@ descShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.11', 't(n)/n**1
 randIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/n**2.2']
 randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.09', 't(n)/n**1.18']
 
+# Calculamos tiempo de ejecución (inicio)
 totalStart = time.perf_counter_ns()
 
 # A continuación, se realizan cálculos de tiempo y se llenan las tablas con los resultados...
@@ -202,6 +203,7 @@ for i in range(8):
 
     n *= 2
 
+# Calculamos tiempo de ejecución (final)
 totalFinish = time.perf_counter_ns()
 
 # Mostramos las tablas (ya completas) con su correspondiente nombre
@@ -230,6 +232,7 @@ print('Ordenacion Shell con inicialización aleatoria.')
 print(randShell)
 print()
 
+# Mostramos el tiempo de ejecución
 print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
 print()
 
