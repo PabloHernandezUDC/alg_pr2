@@ -141,7 +141,6 @@ finish_2 = time.perf_counter_ns()
 print(f'\nTiempo de ejecución del Ejercicio 2: {round((finish_2 - start_2) / (10**7), 2)} centésimas de segundo.')
 print()
 
-
 # EJERCICIO Nº3
 '''
 En este ejercicio, se realiza un análisis de rendimiento de los algoritmos de ordenación en diferentes configuraciones y se crean tablas
@@ -171,7 +170,6 @@ randIns.title         = 'Ordenacion por inserción con inicialización aleatoria
 randIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/n**2.2']
 randShell.title       = 'Ordenacion Shell con inicialización aleatoria'
 randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n*(log(n))', 't(n)/n**1.2']
-
 
 # A continuación, se realizan cálculos de tiempo y se llenan las tablas con los resultados...
 
