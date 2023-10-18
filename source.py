@@ -254,7 +254,7 @@ tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Comp
 
 tabla_complejidades.add_row(['Ordenacion por inserción con inicialización ascendiente','O(n)','O(n^1.04)'])
 tabla_complejidades.add_row(['Ordenacion Shell con inicialización ascendiente','O(n)','O(n^1.2)'])
-tabla_complejidades.add_row(['Ordenacion por inserción con inicialización descendiente','O(n^2/2)','O(n^1.99)'])
+tabla_complejidades.add_row(['Ordenacion por inserción con inicialización descendiente','O((n^2)/2)','O(n^1.99)'])
 tabla_complejidades.add_row(['Ordenacion Shell con inicialización descendiente','O(n*(log^2(n)))','O(n^1.11)'])
 tabla_complejidades.add_row(['Ordenacion por inserción con inicialización aleatoria','O(n^2)','O(n^2)'])
 tabla_complejidades.add_row(['Ordenacion Shell con inicialización aleatoria','O(n^2)','O(n^1.09)'])
