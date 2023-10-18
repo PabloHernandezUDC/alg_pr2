@@ -194,7 +194,6 @@ for i in range(8):
 
     n *= 2
 
-
 n = 128
 # Creamos un bucle para multiplicar n por 2 un total de 8 veces
 for i in range(8):
@@ -229,7 +228,6 @@ for i in range(8):
     randShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.09, t/n**1.18])
 
     n *= 2
-
 
 # Aclaración sobre asteriscos
 print('\nLos datos que se muestran acompañados de un asterisco (*) indican que los tiempos',
