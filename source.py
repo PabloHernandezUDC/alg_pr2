@@ -9,7 +9,7 @@ from prettytable import PrettyTable
 '''
 En este ejercicio, se definen algoritmos de ordenación y funciones auxiliares que se utilizarán posteriormente para analizar su rendimiento.
 '''
-#print("\n\n***Ejercicio 1***\n")
+print("\n\n***Ejercicio 1***\n")
 
 # hibbard_increments(array_length): Genera una secuencia de incrementos de Hibbard hasta un tamaño dado.
 def hibbard_increments(array_length):
@@ -246,7 +246,7 @@ print()
 '''
 En este ejercicio, se calcula empíricamente la complejidad de los algoritmos de ordenación y se ajustan los
 resultados a la complejidad esperada.
-'''
+
 print("\n\n***Ejercicio 4*** ")
 # Función para calcular la complejidad empírica
 def calcular_complejidad_empirica(algoritmo, situacion_inicial, n_min, n_max, paso):
@@ -304,3 +304,5 @@ print("****Ordenación Shell con inicialización ascendente****")
 resultados_aleatoria_shell = calcular_complejidad_empirica(shell_sort_hibbard, 1, 10, 1000, 10)
 ajustar_complejidad(resultados_aleatoria_shell, "O(?)")
 print("\n\n")
+
+'''

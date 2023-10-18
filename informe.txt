@@ -127,9 +127,29 @@ Ordenacion Shell con inicialización aleatoria.
 +-------+-----------+-------------------+-------------------+--------------------+
 
 -----Ejercicio 4-----
-Inserción: O(n^2) en el peor caso.
-Shell: Depende de la secuencia de incrementos utilizada. La secuencia de Hibbard se cree que tiene una complejidad de O(n^(3/2)) en el peor caso,
-       aunque es difícil de determinar exactamente.
+Ordenación por Inserción (ascendente):
+Complejidad esperada: O(n^2) en el peor caso.
+Complejidad empírica: Los datos muestran el tiempo de ejecución (t(n)) para diferentes tamaños de entrada (n). La relación t(n) / n debería estar cerca de una constante si la complejidad es cuadrática.
+
+Ordenación Shell (ascendente):
+Complejidad esperada: La complejidad exacta es difícil de predecir, pero se espera que esté entre O(n log^2 n) y O(n^(4/3)) en promedio.
+Complejidad empírica: Al igual que con la inserción, observamos la relación t(n) / n para determinar cómo se comporta la complejidad en la práctica.
+
+Ordenación por Inserción (descendente):
+Complejidad esperada: O(n^2) en el peor caso, similar a la inserción ascendente.
+Complejidad empírica: Nuevamente, observamos la relación t(n) / n, pero se espera que la constante multiplicativa sea diferente.
+
+Ordenación Shell (descendente):
+Complejidad esperada: Al igual que con la inserción descendente, se espera que la complejidad sea O(n^2).
+Complejidad empírica: Similar al caso anterior, la relación t(n) / n se analiza.
+
+Ordenación por Inserción (aleatorio):
+Complejidad esperada: O(n^2) en el peor caso, similar a la inserción ascendente y descendente.
+Complejidad empírica: Observamos la relación t(n) / n para datos aleatorios.
+
+Ordenación Shell (aleatorio):
+Complejidad esperada: Similar a la ordenación Shell ascendente, con una complejidad promedio más rápida que la inserción.
+Complejidad empírica: Observamos la relación t(n) / n para datos aleatorios
 
 
 -----Tiempos medidos en bucles-----
