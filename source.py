@@ -112,21 +112,18 @@ def generar_vector(tipo, n):
 def test():
     n = 5
     # Creamos la tabla table_test
-    table_test = PrettyTable()
+    tabla_test = PrettyTable()
     # Establecemos los nombres de las columnas de la tabla table_test
-    table_test.field_names =['Tipo de inicialización','Ordenación','Resultado','Éxito o Fracaso']
+    tabla_test.field_names =['Tipo de inicialización','Ordenación','Resultado','Éxito o Fracaso']
     # El vector con el que trabajaremos será de longitud 'n'
     vector = aleatorio(n)
     print(f'Vector original: {vector}')
     result = ins_sort(vector.copy())
-    tabla_test.add_row(['Aleatoria', 'Inserción', result, '///Éxito' if result == sorted(vector) else '---Fracaso'])
+    tabla_test.add_row(['Aleatoria', 'Inserción', result, 'Éxito' if result == sorted(vector) else 'Fracaso'])
     
-
     vector = sorted(vector, reverse = True)
     result = shell_sort_hibbard(vector.copy())
-    tabla_test.add_row(['Descendiente', 'Shell', result,  '///Éxito' if result == sorted(vector) else '---Fracaso'])
-   
-
+    tabla_test.add_row(['Descendiente', 'Shell', result,  'Éxito' if result == sorted(vector) else 'Fracaso'])
 
 # EJERCICIO Nº2
 '''
