@@ -39,10 +39,11 @@ Ordenación Shell
 
 -----Ejercicio 3-----
 El ejercicio 3 trataba de determinar los tiempos de ejecución para distintos tamaños del vector y para tres diferentes situaciones
-iniciales:
-1.-el vector ya está ordenado en orden ascendente.
-2.-el vector ya está ordenado pero en orden descendente.
-3.-el vector está inicialmente desordenado (inicialización aleatoria).
+iniciales: el vector está en orden ascendente,
+           el vector está en orden descendente y
+           el vector está desordenado (inicialización aleatoria).
+La primera columna representa n, la segunda el tiempo en nanosegundos, la tercera la cota subestimada, la cuarta ajustada y la quinta sobreestimada.
+
 
 +-------------------------------------------------------------------------------+
 |            Ordenacion por inserción con inicialización ascendiente            |
@@ -158,8 +159,7 @@ por la división. Esto nos permite etiquetarlos con un asterisco.
 Hemos observado que algunas de las medidas de tiempo se desviaban ligeramente de las demás.
 Por ejemplo, en la tabla del ejercicio 3, en el algoritmo de Shell e inicialización aleatoria, 
 en n=512 el valor para la cota ajustada de t(n)/n**1.09 el resultado no sigue la tendencia del resto
-de datos. También se puede observar en la ordenación por inserción con inicialización ascendiente
-para n=256.
+de datos. También se puede observar en la ordenación por inserción con inicialización ascendiente para n=256.
 
 -----Conclusiones-----
 En esta práctica hemos implementado dos algoritmos en Python a partir de pseudocódigo y
