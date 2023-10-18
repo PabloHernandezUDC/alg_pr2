@@ -1,10 +1,11 @@
 Pablo Hernández Martínez - pablo.hernandez.martinez@udc.es 
 Iván Moure Pérez - i.moure@udc.es
 
-
 -----Informe Práctica 1 Algoritmos-----
 
-Esta práctica consiste en implementar dos algoritmos y evaluar su rendimiento en Python (incluyendo medir sus tiempos de ejecución) para posteriormente averiguar su complejidad teórica. Esto lo conseguiremos usando varias cotas para estimar la constante de cada algoritmo. 
+Esta práctica consiste en implementar dos algoritmos y evaluar su rendimiento en Python
+(incluyendo medir sus tiempos de ejecución) para posteriormente averiguar su complejidad teórica.
+Esto lo conseguiremos usando varias cotas para estimar la constante de cada algoritmo. 
 
 -----Especificaciones de la máquina-----
 Procesador: Intel® Core™ i7-1195G7 2.9GHz 
@@ -16,7 +17,9 @@ Versión de Python: 3.10.5 64-bit
 El ejercicio 1 se trataba de implementarlos a partir del pseudocódigo proporcionado. 
 
 -----Ejercicio 2-----
-El ejercicio 2 trataba de validar que ambos algoritmos funcionasen correctamente. Para ello creamos un test, contenido en la función test(), que verifica que los dos proporcionen el mismo resultado si se les pasa vectores generados de manera aleatoria. A continuación, adjuntamos un ejemplo de testeo. 
+El ejercicio 2 trataba de validar que ambos algoritmos funcionasen correctamente. Para ello creamos
+un test, contenido en la función test(), que verifica que los dos proporcionen el mismo resultado
+si se les pasa vectores generados de manera aleatoria. A continuación, adjuntamos un ejemplo de testeo. 
 
 ***Ejercicio 2***
 Inicializacion aleatoria
@@ -42,118 +45,138 @@ iniciales:
 3.-el vector está inicialmente desordenado (inicialización aleatoria).
 
 ***Ejercicio 3***
-Ordenacion por inserción con inicialización ascendiente.
-+-------+-----------+-----------------+--------------------+--------------------+
-|   n   | t(n) (ns) |      t(n)/n     |    t(n)/n**1.04    |    t(n)/n**1.08    |
-+-------+-----------+-----------------+--------------------+--------------------+
-|  128  |  22618.0* |    176.703125   | 145.53110647310913 | 119.85811202426339 |
-|  256  |  45284.0* |    176.890625   | 141.70175131550172 |  113.513004580544  |
-|  512  |  92993.0* |  181.626953125  | 141.5172885866579  | 110.26525867631695 |
-|  1024 | 187238.0* |  182.849609375  | 138.5740910548212  | 105.01952275045642 |
-|  2048 | 371727.0* | 181.50732421875 | 133.7953304042893  | 98.62516851616792  |
-|  4096 |   715300  |  174.6337890625 | 125.2085191535304  | 89.77170656824755  |
-|  8192 |  1438000  |  175.537109375  | 122.41463575511978 | 85.36851894402255  |
-| 16384 |  2913800  | 177.84423828125 | 120.63213163198928 |  81.8250359005969  |
-+-------+-----------+-----------------+--------------------+--------------------+
-
-Ordenacion Shell con inicialización ascendiente.
++--------------------------------------------------------------------------------+
+|            Ordenacion por inserción con inicialización ascendiente             |
 +-------+-----------+------------------+--------------------+--------------------+
-|   n   | t(n) (ns) |      t(n)/n      |     t(n)/n**1.2    |    t(n)/n**1.4     |
+|   n   | t(n) (ns) |      t(n)/n      |    t(n)/n**1.04    |    t(n)/n**1.08    |
 +-------+-----------+------------------+--------------------+--------------------+
-|  128  | 137956.0* |    1077.78125    | 408.4027239248213  | 154.75569361520607 |
-|  256  | 323950.0* |   1265.4296875   | 417.4361207957804  | 137.7025659080955  |
-|  512  |   795900  |   1554.4921875   | 446.4106546592482  |  128.197796165057  |
-|  1024 |  1831300  |  1788.37890625   | 447.09472656250017 | 111.77368164062507 |
-|  2048 |  4183600  |   2042.7734375   | 444.58439167549636 | 96.75829815144205  |
-|  4096 |  8685700  | 2120.5322265625  | 401.76572820249544 | 76.12037126157955  |
-|  8192 |  19203900 | 2344.22607421875 | 386.65310619646596 | 63.77397904389363  |
-| 16384 |  44451000 | 2713.07373046875 | 389.56291639689044 | 55.93628515411946  |
+|  128  |  23138.0* |    180.765625    | 148.87694498075862 | 122.61371456439149 |
+|  256  |  48178.0* |   188.1953125    | 150.75759594731565 | 120.76736893122182 |
+|  512  | 111511.0* |  217.794921875   | 169.69808875492575 | 132.2227399939219  |
+|  1024 | 231072.0* |    225.65625     | 171.01545823080596 | 129.60548158489976 |
+|  2048 | 427838.0* |  208.9052734375  | 153.99130697934325 |  113.512321805035  |
+|  4096 |   839700  |  205.0048828125  |  146.983913788927  | 105.38417727576886 |
+|  8192 |  1782800  |  217.626953125   | 151.76690724911512 | 105.83796632364633 |
+| 16384 |  3621300  | 221.026611328125 | 149.92282870441443 | 101.6929791018023  |
 +-------+-----------+------------------+--------------------+--------------------+
 
-Ordenacion por inserción con inicialización descendiente.
-+-------+-------------+--------------------+-------------------+--------------------+
-|   n   |  t(n) (ns)  |    t(n)/n**1.8     |    t(n)/n**1.99   |    t(n)/n**2.18    |
-+-------+-------------+--------------------+-------------------+--------------------+
-|  128  |   1365200   | 219.89650876308042 | 87.46784768568186 | 34.79193199473904  |
-|  256  |   5420800   | 250.74451793638804 | 87.43108206596574 | 30.485986988417032 |
-|  512  |   22053300  |  292.946056175818  | 89.54191186789964 | 27.369386997811855 |
-|  1024 |   90246900  | 344.26460266113276 | 92.24341630570088 | 24.716011422534418 |
-|  2048 |  360596300  | 395.0275198249981  | 92.78433536029372 | 21.793248460424472 |
-|  4096 |  1464129100 | 460.60798879690105 |  94.8381505137027 | 19.52696221433888  |
-|  8192 |  5850343600 | 528.5419651447581  | 95.39714681641877 | 17.218340682221598 |
-| 16384 | 23578413600 | 611.7284667822416  | 96.78741756861902 | 15.31366400010428  |
-+-------+-------------+--------------------+-------------------+--------------------+
++---------------------------------------------------------------------------------+
+|                 Ordenacion Shell con inicialización ascendiente                 |
++-------+-----------+-------------------+--------------------+--------------------+
+|   n   | t(n) (ns) |       t(n)/n      |     t(n)/n**1.2    |    t(n)/n**1.4     |
++-------+-----------+-------------------+--------------------+--------------------+
+|  128  | 129963.0* |    1015.3359375   | 384.7403752605291  | 145.78934014695284 |
+|  256  |   569500  |    2224.609375    | 733.8474171730112  | 242.0793680650112  |
+|  512  |   742700  |    1450.5859375   | 416.5714200470206  | 119.62872623669789 |
+|  1024 |  1761500  |   1720.21484375   | 430.05371093750017 | 107.51342773437507 |
+|  2048 |  4120600  |   2012.01171875   |  437.889483779054  | 95.30123419132616  |
+|  4096 |  9145900  |  2232.8857421875  | 423.0527388198076  |  80.1535055920974  |
+|  8192 |  20521600 |    2505.078125    | 413.1838003802038  | 68.14991165061095  |
+| 16384 |  44611100 | 2722.845458984375 | 390.96601245581246 | 56.13775192096778  |
++-------+-----------+-------------------+--------------------+--------------------+
 
-Ordenacion Shell con inicialización descendiente.
-+-------+-----------+------------------+-------------------+--------------------+
-|   n   | t(n) (ns) |      t(n)/n      |    t(n)/n**1.11   |    t(n)/n**1.22    |
-+-------+-----------+------------------+-------------------+--------------------+
-|  128  | 205401.0* |   1604.6953125   | 941.0213726842852 | 551.8313769291436  |
-|  256  | 467774.0* |   1827.2421875   | 992.8638937173125 | 539.4899035229856  |
-|  512  |   761100  |   1486.5234375   |  748.431512840008 | 376.81863284579657 |
-|  1024 |  1845100  |  1801.85546875   |  840.595299162384 | 392.1515733246286  |
-|  2048 |  4108500  |  2006.103515625  | 867.1755895577055 | 374.85279162699254 |
-|  4096 |  9242500  | 2256.4697265625  | 903.7949638210541 | 362.00146051712477 |
-|  8192 |  21287300 | 2598.54736328125 | 964.4012025467448 | 357.91907918091096 |
-| 16384 |  45813000 | 2796.20361328125 | 961.5737505254519 | 330.67122626830854 |
-+-------+-----------+------------------+-------------------+--------------------+
++------------------------------------------------------------------------------------+
+|              Ordenacion por inserción con inicialización descendiente              |
++-------+-------------+--------------------+--------------------+--------------------+
+|   n   |  t(n) (ns)  |    t(n)/n**1.8     |    t(n)/n**1.99    |    t(n)/n**2.18    |
++-------+-------------+--------------------+--------------------+--------------------+
+|  128  |   1684300   | 271.29482105893374 | 107.91246400307205 | 42.92415108316654  |
+|  256  |   5974200   | 276.3425876356939  | 96.35676846194151  | 33.59824813057132  |
+|  512  |   25784300  | 342.50697157587047 | 104.69070470974796 | 31.999768069526112 |
+|  1024 |  112254100  | 428.2154083251952  | 114.7374777230218  | 30.743145945470935 |
+|  2048 |  423444400  | 463.8766152503074  | 108.95565821401485 | 25.591579886913326 |
+|  4096 |  1683691800 | 529.6813605793602  | 109.06020264680691 | 22.455250810322816 |
+|  8192 |  6885468300 | 622.0590097005477  | 112.2761456805541  | 20.264850588611104 |
+| 16384 | 28053001400 | 727.8190902148767  | 115.15522658211636 |  18.2198109220569  |
++-------+-------------+--------------------+--------------------+--------------------+
 
-Ordenacion por inserción con inicialización aleatoria.
++--------------------------------------------------------------------------------+
+|                Ordenacion Shell con inicialización descendiente                |
++-------+-----------+------------------+--------------------+--------------------+
+|   n   | t(n) (ns) |      t(n)/n      |    t(n)/n**1.11    |    t(n)/n**1.22    |
++-------+-----------+------------------+--------------------+--------------------+
+|  128  | 225354.0* |   1760.578125    | 1032.4337779265652 | 605.4372087598903  |
+|  256  | 512712.0* |    2002.78125    | 1088.2461031942578 | 591.3174896746655  |
+|  512  |  1011900  |   1976.3671875   | 995.0569542015559  | 500.98906132789585 |
+|  1024 |  1738500  |  1697.75390625   | 792.0302030208685  | 369.4951548560332  |
+|  2048 |  4218800  |   2059.9609375   | 890.4564627543016  | 384.91638245489986 |
+|  4096 |  9230700  | 2253.5888671875  | 902.6410789876121  | 361.5392893259858  |
+|  8192 |  20549200 |  2508.447265625  | 930.9622728750742  | 345.50885936236045 |
+| 16384 |  44154200 | 2694.95849609375 | 926.7570273819857  | 318.69826160470063 |
++-------+-----------+------------------+--------------------+--------------------+
+
++-----------------------------------------------------------------------------------+
+|               Ordenacion por inserción con inicialización aleatoria               |
 +-------+------------+--------------------+--------------------+--------------------+
 |   n   | t(n) (ns)  |    t(n)/n**1.8     |     t(n)/n**2.0    |    t(n)/n**2.2     |
 +-------+------------+--------------------+--------------------+--------------------+
-|  128  | 300561.0*  | 48.41218471311179  | 18.34478759765625  | 6.951374617720511  |
-|  256  |  1204600   | 55.71997607478104  |  18.3807373046875  | 6.063382069843395  |
-|  512  |  4956800   | 65.84388781961405  |   18.90869140625   | 5.430095678376481  |
-|  1024 |  19982600  | 76.22756958007811  | 19.05689239501953  | 4.764223098754877  |
-|  2048 |  80132200  | 87.78355247716271  | 19.105005264282227 | 4.157968273649072  |
-|  4096 | 330299400  | 103.91060619915494 | 19.687378406524658 | 3.730060700241058  |
-|  8192 | 1313148300 | 118.63473848074467 | 19.56743448972702  | 3.2274230753406417 |
-| 16384 | 5344140300 | 138.6506661325251  | 19.908474013209343 | 2.858603918684344  |
+|  128  | 280255.0*  | 45.14144159346404  | 17.10540771484375  | 6.481737462575856  |
+|  256  |  1077600   | 49.845464235583634 |   16.44287109375   | 5.4241246210055145 |
+|  512  |  4756600   | 63.184521627416125 | 18.144989013671875 | 5.210779757861033  |
+|  1024 |  19395800  | 73.98910522460936  | 18.497276306152344 |  4.62431907653808  |
+|  2048 |  79453700  | 87.04026650278844  | 18.943238258361816 | 4.122761684117386  |
+|  4096 | 311509200  |  97.9992994495715  | 18.567395210266113 | 3.517863564643265  |
+|  8192 | 1262628300 | 114.07057235567927 | 18.814627826213837 | 3.1032562818671177 |
+| 16384 | 5146800500 | 133.5307977929047  | 19.17332597076893  |  2.75304600030552  |
 +-------+------------+--------------------+--------------------+--------------------+
 
-Ordenacion Shell con inicialización aleatoria.
-+-------+-----------+-------------------+-------------------+--------------------+
-|   n   | t(n) (ns) |       t(n)/n      |    t(n)/n**1.09   |    t(n)/n**1.18    |
-+-------+-----------+-------------------+-------------------+--------------------+
-|  128  | 122365.0* |    955.9765625    |  617.729508284987 | 399.1622393002049  |
-|  256  | 297553.0* |   1162.31640625   | 705.6393172585923 | 428.39182462169845 |
-|  512  | 769135.0* |   1502.216796875  | 856.8372076215426 | 488.7243984303379  |
-|  1024 |  1023100  |    999.12109375   | 535.4157370707426 |  286.922189208366  |
-|  2048 |  2344900  |   1144.970703125  | 576.4673020820309 | 290.2384746288623  |
-|  4096 |  5328200  |   1300.830078125  | 615.3301212504049 | 291.06888323476716 |
-|  8192 |  12409700 |  1514.85595703125 |  673.234315214403 | 299.1996968942553  |
-| 16384 |  24657900 | 1504.998779296875 |  628.403149672631 | 262.3859394111762  |
-+-------+-----------+-------------------+-------------------+--------------------+
++-------------------------------------------------------------------------------+
+|                 Ordenacion Shell con inicialización aleatoria                 |
++-------+-----------+------------------+-------------------+--------------------+
+|   n   | t(n) (ns) |      t(n)/n      |    t(n)/n**1.09   |    t(n)/n**1.18    |
++-------+-----------+------------------+-------------------+--------------------+
+|  128  | 120025.0* |   937.6953125    | 605.9165956924412 | 391.5290137866799  |
+|  256  | 279307.0* |  1091.04296875   | 662.3693956557172 | 402.12276589250564 |
+|  512  | 711229.0* |  1389.119140625  | 792.3283563216628 | 451.92971997271064 |
+|  1024 |   961400  |   938.8671875    | 503.1264682042928 | 269.61879846048583 |
+|  2048 |  2243100  |  1095.263671875  | 551.4409165850158 | 277.63824574182314 |
+|  4096 |  5008900  | 1222.8759765625  | 578.4555843119914 | 273.6261644147414  |
+|  8192 |  11047900 | 1348.62060546875 |  599.355777420663 | 266.36649808762843 |
+| 16384 |  24598000 | 1501.3427734375  | 626.8766065093693 | 261.74854053411326 |
++-------+-----------+------------------+-------------------+--------------------+
+
+Tiempo total de ejecución: 44.67s.
 
 -----Ejercicio 4-----
 Ordenación por Inserción (ascendente):
-Complejidad esperada: O(n^2) en el peor caso.
-Complejidad empírica: Los datos muestran el tiempo de ejecución (t(n)) para diferentes tamaños de entrada (n). La relación t(n) / n debería estar cerca de una constante si la complejidad es cuadrática.
+Complejidad esperada: O(n)
+Complejidad empírica: Aproximadamente O(n**1.04).
 
 Ordenación Shell (ascendente):
-Complejidad esperada: La complejidad exacta es difícil de predecir, pero se espera que esté entre O(n log^2 n) y O(n^(4/3)) en promedio.
-Complejidad empírica: Al igual que con la inserción, observamos la relación t(n) / n para determinar cómo se comporta la complejidad en la práctica.
+Complejidad esperada: O(n)
+Complejidad empírica: Aproximadamente O(n**1.2).
 
 Ordenación por Inserción (descendente):
-Complejidad esperada: O(n^2) en el peor caso, similar a la inserción ascendente.
-Complejidad empírica: Nuevamente, observamos la relación t(n) / n, pero se espera que la constante multiplicativa sea diferente.
+Complejidad esperada: O(n^2/2)
+Complejidad empírica: Aproximadamente O(n**1.99).
 
 Ordenación Shell (descendente):
-Complejidad esperada: Al igual que con la inserción descendente, se espera que la complejidad sea O(n^2).
-Complejidad empírica: Similar al caso anterior, la relación t(n) / n se analiza.
+Complejidad esperada: O(n*(log**2 (n))) 
+Complejidad empírica: Aproximadamente O(n**1.11).
 
 Ordenación por Inserción (aleatorio):
-Complejidad esperada: O(n^2) en el peor caso, similar a la inserción ascendente y descendente.
-Complejidad empírica: Observamos la relación t(n) / n para datos aleatorios.
+Complejidad esperada: O(n^2)
+Complejidad empírica: O(n^2)
 
 Ordenación Shell (aleatorio):
-Complejidad esperada: Similar a la ordenación Shell ascendente, con una complejidad promedio más rápida que la inserción.
-Complejidad empírica: Observamos la relación t(n) / n para datos aleatorios
-
+Complejidad esperada: O(n^2)
+Complejidad empírica: O(1.09)
 
 -----Tiempos medidos en bucles-----
 En el ejercicio 3 hay varias medidas de tiempo junto a las que aparece un asterisco. Como se enuncia al ejecutar el código, el asterisco
 representa que estos tiempos se han medido de nuevo calculando su valor en medio en un bucle, ya que no cumplían con el umbral de confianza. 
 Dicho bucle iteraba 10 veces. Todos los valores eran int, a no ser que pasasen por este bucle, tras lo cual se convertirían en float al pasar 
-por la división. Esto nos permite etiquetarlos con un asterisco. 
+por la división. Esto nos permite etiquetarlos con un asterisco.
+
+-----Mediciones anómalas-----
+Hemos observado que algunas de las medidas de tiempo se desviaban ligeramente de las demás.
+Por ejemplo, en la tabla del ejercicio 3, en el algoritmo de Shell e inicialización aleatoria, 
+en n=512 el valor para la cota ajustada de t(n)/n**1.09m el resultado no sigue la tendencia del resto
+de datos. También se puede observar en la ordenación por inserción con inicialización descendiente
+para n=256.
+
+-----Conclusiones-----
+En esta práctica hemos implementado dos algoritmos en Python a partir de pseudocódigo y
+después comprobamos que funcionasen correctamente suministrándoles vectores aleatorios.
+A continuación, programamos una manera de medir los tiempos de ejecución y por último fuimos
+capaces de deducir su complejidad teórica a partir de varias cotas. 
