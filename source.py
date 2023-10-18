@@ -114,20 +114,18 @@ def test():
     n = 5
     
     tabla_test = PrettyTable()
-    tabla_test.field_names =['Tipo de inicialización','Ordenación','Resultado','Éxito o Fracaso']
+    tabla_test.field_names =['Tipo de inicialización', 'Ordenación', 'Resultado', 'Éxito/Fracaso']
     vector = aleatorio(n)
     result = ins_sort(vector.copy())
-    tabla_test.add_row(['Aleatoria','Inserción',result, '///Éxito' if result == sorted(vector) else '---Fracaso'])
+    tabla_test.add_row(['Aleatoria', 'Inserción', result, '///Éxito' if result == sorted(vector) else '---Fracaso'])
     
 
     vector = sorted(vector, reverse = True)
     result = shell_sort_hibbard(vector.copy())
-    tabla_test.add_row(['Descendiente','Shell',result,  '///Éxito' if result == sorted(vector) else '---Fracaso'])
+    tabla_test.add_row(['Descendiente', 'Shell', result,  '///Éxito' if result == sorted(vector) else '---Fracaso'])
    
     print(tabla_test)
    
-
-
 # EJERCICIO Nº2
 '''
 En este ejercicio, se ejecuta la función test() para realizar pruebas de ordenación con vectores aleatorios.
@@ -180,7 +178,6 @@ for i in range(8):
 
     n *= 2
 
-
 n = 128
 # Creamos un bucle para multiplicar n por 2 un total de 8 veces
 for i in range(8):
@@ -216,7 +213,6 @@ for i in range(8):
 
     n *= 2
 
-
 # Aclaración sobre asteriscos
 print('\nLos datos que se muestran acompañados de un asterisco (*) indican que los tiempos',
       'fueron medidos de nuevo ya que no cumplían con el umbral de confianza de 500 microsegundos.',
@@ -241,7 +237,6 @@ print()
 
 print(randShell)
 print()
-
 
 # EJERCICIO Nº4
 '''
