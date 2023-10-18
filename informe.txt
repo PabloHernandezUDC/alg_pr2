@@ -161,6 +161,8 @@ Por ejemplo, en la tabla del ejercicio 3, en el algoritmo de Shell e inicializac
 en n=512 el valor para la cota ajustada de t(n)/n**1.09 el resultado no sigue la tendencia del resto
 de datos. También se puede observar en la ordenación por inserción con inicialización ascendiente para n=256.
 
+También hemos automatizado la detección de tiempos negativos, pero aquí no hemos obtenido ninguno.
+
 -----Conclusiones-----
 En esta práctica hemos implementado dos algoritmos en Python a partir de pseudocódigo y
 después comprobamos que funcionasen correctamente suministrándoles vectores aleatorios.
