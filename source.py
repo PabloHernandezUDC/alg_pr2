@@ -10,10 +10,8 @@ from prettytable import PrettyTable
 totalStart = time.perf_counter_ns()
 
 # EJERCICIO Nº1
-'''
-En este ejercicio, se definen algoritmos de ordenación y funciones auxiliares que se utilizarán posteriormente para analizar su rendimiento.
-'''
 print("\n\n***Ejercicio 1***\n")
+print('En este ejercicio, se definen algoritmos de ordenación y funciones auxiliares que se utilizarán posteriormente para analizar su rendimiento.')
 
 # hibbard_increments(array_length): Genera una secuencia de incrementos de Hibbard hasta un tamaño dado.
 def hibbard_increments(array_length):
@@ -98,7 +96,6 @@ def calcular_tiempo(func, v, tipo):
 
 # generar_vector(tipo, n): Genera un vector de un tipo específico (ascendente, descendente o aleatorio) de longitud n.
 def generar_vector(tipo, n):
-    
     # Vector tipo 1: ascendiente
     # Vector tipo 2: descendiente
     # Vector tipo 3: aleatorio
@@ -153,7 +150,7 @@ randIns, randShell = PrettyTable(), PrettyTable()
 ascIns.title          = 'Ordenacion por inserción con inicialización ascendiente'
 ascIns.field_names    = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.04', 't(n)/n**1.08']
 ascShell.title        = 'Ordenacion Shell con inicialización ascendiente'
-ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.2', 't(n)/n**1.4']
+ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/(n)*log(n/2)', 't(n)/n**1.2']
 
 descIns.title         = 'Ordenacion por inserción con inicialización descendiente'
 descIns.field_names   = ['n', 't(n) (ns)', 't/((n**1.8))', 't/((n**2))', 't/((n**2.2))']
@@ -179,7 +176,7 @@ for i in range(8):
     ascIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.04, t/n**1.08])
     # Ordenacion Shell con inicialización ascendiente
     t = calcular_tiempo(shell_sort_hibbard, vector, 1)
-    ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.2, t/n**1.4])
+    ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1, t/((n)*(log(n/2))), t/n**1.2])
 
     n *= 2
 
@@ -260,18 +257,17 @@ tabla_complejidades             = PrettyTable()
 tabla_complejidades.title       = 'Tabla de complejidades'
 tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Complejidad empírica']
 
-# Añadimos filas a la tabla de complejidades para introducir los datos
-tabla_complejidades.add_row(['Ordenacion por inserción con inicialización ascendiente','O(n)','O(n^1.04)'])
-tabla_complejidades.add_row(['Ordenacion Shell con inicialización ascendiente','O(n)','O(n^1.2)'])
-tabla_complejidades.add_row(['Ordenacion por inserción con inicialización descendiente','O((n^2)/2)','O(n^1.99)'])
-tabla_complejidades.add_row(['Ordenacion Shell con inicialización descendiente','O(n*(log^2(n)))','O(n^1.11)'])
-tabla_complejidades.add_row(['Ordenacion por inserción con inicialización aleatoria','O(n^2)','O(n^2)'])
-tabla_complejidades.add_row(['Ordenacion Shell con inicialización aleatoria','O(n^2)','O(n^1.09)'])
+tabla_complejidades.add_row(['inserción-ascendiente' ,'O(n)'           ,'O(n^1.04)'])
+tabla_complejidades.add_row(['Shell-ascendiente'     ,'O(n)'           ,'O(n*(log(n/2)))'])
+tabla_complejidades.add_row(['inserción-descendiente','O((n^2)/2)'     ,'O((n^2)/2)'])
+tabla_complejidades.add_row(['Shell-descendiente'    ,'O(n*(log^2(n)))','O(n*(log^2(n)))'])
+tabla_complejidades.add_row(['inserción-aleatoria'   ,'O(n^2)'         ,'O(n^2)'])
+tabla_complejidades.add_row(['Shell-aleatoria'       ,'O(n^2)'         ,'O(n^1.09)'])
 
 print(tabla_complejidades)
 
 # Calculamos tiempo de ejecución (final)
 totalFinish = time.perf_counter_ns()
 # Mostramos el tiempo de ejecución
-print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
+print(f'Tiempo total de ejecución del programa entero: {round((totalFinish - totalStart) / (10**9), 2)}s.')
 print()
