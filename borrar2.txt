@@ -1,4 +1,4 @@
-ascIns parece 1.04 (a lo mejor es 1)
+ascIns parece 1.04
 ascShell es 1.2
 descIns es 1.99
 descShell es 1.11
