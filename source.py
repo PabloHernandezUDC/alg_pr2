@@ -99,7 +99,6 @@ def generar_vector(tipo, n):
     # Vector tipo 1: ascendiente
     # Vector tipo 2: descendiente
     # Vector tipo 3: aleatorio
-    
     if tipo in (1, 2):
         vector = np.arange(0, n)
         if tipo == 2:
@@ -112,32 +111,48 @@ def generar_vector(tipo, n):
 # test(): Realiza pruebas de ordenación con vectores aleatorios e imprime los resultados.
 def test():
     n = 5
-    
-    tabla_test = PrettyTable()
-    tabla_test.field_names =['Tipo de inicialización', 'Ordenación', 'Resultado', 'Éxito/Fracaso']
+    # Creamos la tabla table_test
+    table_test = PrettyTable()
+    # Establecemos los nombres de las columnas de la tabla table_test
+    table_test.field_names =['Tipo de inicialización','Ordenación','Resultado','Éxito o Fracaso']
+    # El vector con el que trabajaremos será de longitud 'n'
     vector = aleatorio(n)
     print(f'Vector original: {vector}')
     result = ins_sort(vector.copy())
-    tabla_test.add_row(['Aleatoria', 'Inserción', result, 'Éxito' if result == sorted(vector) else 'Fracaso'])
+    tabla_test.add_row(['Aleatoria', 'Inserción', result, '///Éxito' if result == sorted(vector) else '---Fracaso'])
+    
 
     vector = sorted(vector, reverse = True)
     result = shell_sort_hibbard(vector.copy())
-    tabla_test.add_row(['Descendiente', 'Shell', result,  'Éxito' if result == sorted(vector) else 'Fracaso'])
+    tabla_test.add_row(['Descendiente', 'Shell', result,  '///Éxito' if result == sorted(vector) else '---Fracaso'])
    
-    print(tabla_test)
-   
+
+
 # EJERCICIO Nº2
 '''
 En este ejercicio, se ejecuta la función test() para realizar pruebas de ordenación con vectores aleatorios.
 '''
+# Calculamos el tiempo de ejecución (inicio Ejercicio 2)
+start_2 = time.perf_counter_ns()
+
 print("\n\n***Ejercicio 2*** ")
 test()
+
+# Calculamos tiempo de ejecución (final Ejercicio 2)
+finish_2 = time.perf_counter_ns()
+# Mostramos el tiempo de ejecución
+print(f'\nTiempo de ejecución del Ejercicio 2: {round((finish_2 - start_2) / (10**7), 2)} centésimas de segundo.')
+print()
+
 
 # EJERCICIO Nº3
 '''
 En este ejercicio, se realiza un análisis de rendimiento de los algoritmos de ordenación en diferentes configuraciones y se crean tablas
 para registrar los resultados.
 '''
+# Calculamos el tiempo de ejecución (inicio Ejercicio 3)
+start_3 = time.perf_counter_ns()
+
 print("\n\n***Ejercicio 3*** ")
 # Creamos las 6 tablas pedidas
 ascIns,  ascShell  = PrettyTable(), PrettyTable()
@@ -160,8 +175,6 @@ randIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/
 randShell.title       = 'Ordenacion Shell con inicialización aleatoria'
 randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n*(log(n))', 't(n)/n**1.2']
 
-# Calculamos tiempo de ejecución (inicio)
-totalStart = time.perf_counter_ns()
 
 # A continuación, se realizan cálculos de tiempo y se llenan las tablas con los resultados...
 
@@ -241,16 +254,24 @@ print()
 
 print(randShell)
 print()
+# Calculamos tiempo de ejecución (final Ejercicio 3)
+finish_3 = time.perf_counter_ns()
+# Mostramos el tiempo de ejecución
+print(f'\nTiempo de ejecución del Ejercicio 3: {round((finish_3 - start_3) / (10**9), 2)}s.')
+print()
 
 # EJERCICIO Nº4
 '''
 En este ejercicio, se calcula empíricamente la complejidad de los algoritmos de ordenación y se ajustan los
 resultados a la complejidad esperada.
 '''
+# Calculamos el tiempo de ejecución (inicio Ejercicio 4)
+start_4 = time.perf_counter_ns()
+
 print("\n\n***Ejercicio 4*** ")
 
 # Con la función PrettyTable creamos la tabla en la que almacenaremos las complejidades
-tabla_complejidades             = PrettyTable()
+tabla_complejidades = PrettyTable()
 
 # Escribimos el título de la tabla y el nombre de las columnas 
 tabla_complejidades.title       = 'Tabla de complejidades'
@@ -265,8 +286,14 @@ tabla_complejidades.add_row(['Shell-aleatoria'       ,'O(n^2)'         ,'O(n^log
 
 print(tabla_complejidades)
 
+# Calculamos tiempo de ejecución (final Ejercicio 4)
+finish_4 = time.perf_counter_ns()
+# Mostramos el tiempo de ejecución
+print(f'\nTiempo de ejecución del Ejercicio 4: {round((finish_4 - start_4) / (10**7), 2)} centésimas de segundo.')
+print()
+
 # Calculamos tiempo de ejecución (final)
 totalFinish = time.perf_counter_ns()
 # Mostramos el tiempo de ejecución
-print(f'Tiempo total de ejecución del programa: {round((totalFinish - totalStart) / (10**9), 2)}s.')
+print(f'Tiempo total de ejecución del programa entero: {round((totalFinish - totalStart) / (10**9), 2)}s.')
 print()
