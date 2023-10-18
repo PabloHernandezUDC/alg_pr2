@@ -6,6 +6,9 @@ import numpy as np
 from math import log
 from prettytable import PrettyTable
 
+# Calculamos tiempo de ejecución (inicio)
+totalStart = time.perf_counter_ns()
+
 # EJERCICIO Nº1
 '''
 En este ejercicio, se definen algoritmos de ordenación y funciones auxiliares que se utilizarán posteriormente para analizar su rendimiento.
@@ -224,8 +227,6 @@ for i in range(8):
 
     n *= 2
 
-# Calculamos tiempo de ejecución (final)
-totalFinish = time.perf_counter_ns()
 
 # Aclaración sobre asteriscos
 print('\nLos datos que se muestran acompañados de un asterisco (*) indican que los tiempos',
@@ -252,70 +253,30 @@ print()
 print(randShell)
 print()
 
-# Mostramos el tiempo de ejecución
-print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
-print()
 
 # EJERCICIO Nº4
 '''
 En este ejercicio, se calcula empíricamente la complejidad de los algoritmos de ordenación y se ajustan los
 resultados a la complejidad esperada.
-
-print("\n\n***Ejercicio 4*** ")
-# Función para calcular la complejidad empírica
-def calcular_complejidad_empirica(algoritmo, situacion_inicial, n_min, n_max, paso):
-    resultados = []
-    for n in range(n_min, n_max + 1, paso):
-        vector = generar_vector(situacion_inicial, n)
-        tiempo = calcular_tiempo(algoritmo, vector, situacion_inicial)
-        resultados.append((n, tiempo))
-    return resultados
-
-# Función para ajustar los resultados a una complejidad
-def ajustar_complejidad(resultados, complejidad_esperada):
-    n_values = np.array([result[0] for result in resultados])
-    tiempos = np.array([result[1] for result in resultados])
-    # Ajustar los datos a una función de complejidad polinómica
-    coeficientes = np.polyfit(n_values, tiempos, deg=len(complejidad_esperada) - 1)
-    # Imprimir los coeficientes obtenidos
-    print(f"Coeficientes del ajuste: {coeficientes}")
-    # Comparar con la complejidad esperada
-    print(f"Complejidad esperada: {complejidad_esperada}")
-    # Ejemplo de cómo calcular la complejidad ajustada
-    complejidad_ajustada = f"{coeficientes[-1]:.2e}"
-    for i in range(len(coeficientes) - 1):
-        complejidad_ajustada += f" + {coeficientes[i]:.2e} * n^{len(coeficientes) - i - 2}"
-    print(f"Complejidad ajustada: {complejidad_ajustada}")
-    return coeficientes
-
-# Realizamos los cálculos para Ordenación por Inserción con inicialización ascendente
-print("****Ordenación por Inserción con inicialización ascendente****")
-resultados_ascendente_ins = calcular_complejidad_empirica(ins_sort, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_ascendente_ins, "O(n^2)")
-print("\n\n")
-# Realizamos los cálculos para Ordenación Shell con inicialización ascendente
-print("****Ordenación Shell con inicialización ascendente****")
-resultados_ascendente_shell = calcular_complejidad_empirica(shell_sort_hibbard, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_ascendente_shell, "O(?)")
-print("\n\n")
-# Realizamos los cálculos para Ordenación por Inserción con inicialización descendente
-print("****Ordenación por Inserción con inicialización ascendente****")
-resultados_descendente_ins = calcular_complejidad_empirica(ins_sort, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_descendente_ins, "O(n^2)")
-print("\n\n")
-# Realizamos los cálculos para Ordenación Shell con inicialización descendente
-print("****Ordenación Shell con inicialización ascendente****")
-resultados_descendente_shell = calcular_complejidad_empirica(shell_sort_hibbard, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_descendente_shell, "O(?)")
-print("\n\n")
-# Realizamos los cálculos para Ordenación por Inserción con inicialización aleatoria
-print("****Ordenación por Inserción con inicialización ascendente****")
-resultados_aleatoria_ins = calcular_complejidad_empirica(ins_sort, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_aleatoria_ins, "O(n^2)")
-print("\n\n")
-# Realizamos los cálculos para Ordenación Shell con inicialización aleatoria
-print("****Ordenación Shell con inicialización ascendente****")
-resultados_aleatoria_shell = calcular_complejidad_empirica(shell_sort_hibbard, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_aleatoria_shell, "O(?)")
-print("\n\n")
 '''
+print("\n\n***Ejercicio 4*** ")
+
+tabla_complejidades             = PrettyTable()
+
+tabla_complejidades.title       = 'Tabla de complejidades'
+tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Complejidad empírica']
+
+tabla_complejidades.add_row(['Ordenacion por inserción con inicialización ascendiente','O(n)','O(n^1.04)'])
+tabla_complejidades.add_row(['Ordenacion Shell con inicialización ascendiente','O(n)','O(n^1.2)'])
+tabla_complejidades.add_row(['Ordenacion por inserción con inicialización descendiente','O((n^2)/2)','O(n^1.99)'])
+tabla_complejidades.add_row(['Ordenacion Shell con inicialización descendiente','O(n*(log^2(n)))','O(n^1.11)'])
+tabla_complejidades.add_row(['Ordenacion por inserción con inicialización aleatoria','O(n^2)','O(n^2)'])
+tabla_complejidades.add_row(['Ordenacion Shell con inicialización aleatoria','O(n^2)','O(n^1.09)'])
+
+print(tabla_complejidades)
+
+# Calculamos tiempo de ejecución (final)
+totalFinish = time.perf_counter_ns()
+# Mostramos el tiempo de ejecución
+print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
+print()
