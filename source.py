@@ -3,6 +3,7 @@
 
 import random, time
 import numpy as np
+from math import log
 from prettytable import PrettyTable
 
 # EJERCICIO Nº1
@@ -161,10 +162,13 @@ ascIns.title          = 'Ordenacion por inserción con inicialización ascendien
 ascIns.field_names    = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.04', 't(n)/n**1.08']
 ascShell.title        = 'Ordenacion Shell con inicialización ascendiente'
 ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.2', 't(n)/n**1.4']
+
 descIns.title         = 'Ordenacion por inserción con inicialización descendiente'
-descIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**1.99', 't(n)/n**2.18']
+descIns.field_names   = ['n', 't(n) (ns)', 't/((n**1.8))', 't/((n**2))', 't/((n**2.2))']
+
 descShell.title       = 'Ordenacion Shell con inicialización descendiente'
-descShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.11', 't(n)/n**1.22']
+descShell.field_names = ['n', 't(n) (ns)', 't/((1/n)*(log(n)**2))', ' t/((n)*(log(n)**2))', 't/((n)*(log(2*n)))']
+
 randIns.title         = 'Ordenacion por inserción con inicialización aleatoria'
 randIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/n**2.2']
 randShell.title       = 'Ordenacion Shell con inicialización aleatoria'
@@ -186,15 +190,25 @@ for i in range(8):
 
     n *= 2
 
+# O(n^2/2) para descIns
+
 n = 128
 for i in range(8):
     vector = generar_vector(2, n)
 
     t = calcular_tiempo(ins_sort, vector, 2)
-    descIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**1.99, t/n**2.18])
+    descIns.add_row([n,
+                     (str(t) + '*' if type(t) == float else t),
+                     t/((n**1.8)),
+                     t/((n**2)),
+                     t/((n**2.2))])
 
     t = calcular_tiempo(shell_sort_hibbard, vector, 2)
-    descShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.11, t/n**1.22])
+    descShell.add_row([n,
+                       (str(t) + '*' if type(t) == float else t),
+                       t/((1/n)*(log(n)**2)),
+                       t/((n)*(log(n)**2)),
+                       t/((n)*(log(2*n)))])
 
     n *= 2
 
