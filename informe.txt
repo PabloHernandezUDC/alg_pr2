@@ -2,8 +2,7 @@ Pablo Hernández Martínez - pablo.hernandez.martinez@udc.es
 Iván Moure Pérez - i.moure@udc.es
 
 -----Informe Práctica 1 Algoritmos-----
-
-Esta práctica consiste en implementar dos algoritmos y evaluar su rendimiento en Python
+Esta práctica consiste en implementar dos algoritmos de ordenación y evaluar su rendimiento en Python
 (incluyendo medir sus tiempos de ejecución) para posteriormente averiguar su complejidad teórica.
 Esto lo conseguiremos usando varias cotas para estimar la constante de cada algoritmo. 
 
@@ -14,28 +13,22 @@ Sistema operativo: Windows 11 Home 64 bits
 Versión de Python: 3.10.5 64-bit 
 
 -----Ejercicio 1-----
-El ejercicio 1 se trataba de implementarlos a partir del pseudocódigo proporcionado. 
+El ejercicio 1 se trataba de implementar los algoritmos a partir del pseudocódigo proporcionado.
+El algoritmo de Shell requería una función auxiliar para gestionar los parámetros y los intervalos de Hibbard.
 
 -----Ejercicio 2-----
 El ejercicio 2 trataba de validar que ambos algoritmos funcionasen correctamente. Para ello creamos
 un test, contenido en la función test(), que verifica que los dos proporcionen el mismo resultado
 si se les pasa vectores generados de manera aleatoria. A continuación, adjuntamos un ejemplo de testeo. 
 
-***Ejercicio 2***
-Inicializacion aleatoria
-[-5, -3, -3, 5, 3]
-
-Ordenación por inserción
-[-5, -3, -3, 3, 5]
-///Éxito.
-
-Inicializacion descendiente
-[5, 3, -3, -3, -5]
-
-Ordenación Shell
-[-5, -3, -3, 3, 5]
-///Éxito.
-
+***Ejercicio 2*** 
+Vector original: [5, 1, 3, -3, 0]
++------------------------+------------+------------------+---------------+
+| Tipo de inicialización | Ordenación |    Resultado     | Éxito/Fracaso |
++------------------------+------------+------------------+---------------+
+|       Aleatoria        | Inserción  | [-3, 0, 1, 3, 5] |     Éxito     |
+|      Descendiente      |   Shell    | [-3, 0, 1, 3, 5] |     Éxito     |
++------------------------+------------+------------------+---------------+
 
 -----Ejercicio 3-----
 El ejercicio 3 trataba de determinar los tiempos de ejecución para distintos tamaños del vector y para tres diferentes situaciones
@@ -120,20 +113,20 @@ La primera columna representa n, la segunda el tiempo en nanosegundos, la tercer
 | 16384 | 5118813000 | 132.80467809908154 | 19.069064408540726 |  2.7380753646779   |
 +-------+------------+--------------------+--------------------+--------------------+
 
-+---------------------------------------------------------------------------------+
-|                  Ordenacion Shell con inicialización aleatoria                  |
-+-------+-----------+-------------------+--------------------+--------------------+
-|   n   | t(n) (ns) |       t(n)/n      |    t(n)/n**1.09    |    t(n)/n**1.18    |
-+-------+-----------+-------------------+--------------------+--------------------+
-|  128  | 115828.0* |     904.90625     | 584.7290768245289  | 377.83813879511405 |
-|  256  | 276982.0* |    1081.9609375   | 656.8557177138842  | 398.7754261169179  |
-|  512  | 828517.0* |   1618.197265625  | 922.9903628712483  | 526.4569580298754  |
-|  1024 |   972200  |    949.4140625    | 508.77839857313654 | 272.64759295120064 |
-|  2048 |  2311200  |    1128.515625    | 568.1825359597381  | 286.06727901498004 |
-|  4096 |  5054900  |  1234.1064453125  | 583.7679197306167  | 276.1390521871222  |
-|  8192 |  11394600 |  1390.9423828125  | 618.1644784436397  |  274.72548621089   |
-| 16384 |  25706700 | 1569.012451171875 |  655.131671703163  | 273.5462723371124  |
-+-------+-----------+-------------------+--------------------+--------------------+
++--------------------------------------------------------------------------------+
+|                 Ordenacion Shell con inicialización aleatoria                  |
++-------+-----------+------------------+--------------------+--------------------+
+|   n   | t(n) (ns) |      t(n)/n      |   t(n)/n*(log(n))  |    t(n)/n**1.2     |
++-------+-----------+------------------+--------------------+--------------------+
+|  128  | 114469.0* |   894.2890625    | 184.31234222714147 | 338.8721868200758  |
+|  256  | 278808.0* |    1089.09375    | 196.40376902352057 | 359.26695467457927 |
+|  512  | 716307.0* |  1399.037109375  | 224.26487774610476 | 401.7679065297175  |
+|  1024 |   972000  |    949.21875     | 136.94331833438207 | 237.30468750000009 |
+|  2048 |  2259500  |  1103.271484375  | 144.69857266018346 | 240.11340304780188 |
+|  4096 |  5064500  | 1236.4501953125  | 148.6517137569612  | 234.2635055875218  |
+|  8192 |  11261100 | 1374.64599609375 | 152.55345858017867 | 226.73203329474862 |
+| 16384 |  24559800 | 1499.01123046875 | 154.4725763167235  | 215.2389668201919  |
++-------+-----------+------------------+--------------------+--------------------+
 
 -----Ejercicio 4-----
 +----------------------------------------------------------------------+
@@ -146,7 +139,7 @@ La primera columna representa n, la segunda el tiempo en nanosegundos, la tercer
 | inserción-descendiente |      O((n^2)/2)      |      O((n^2)/2)      |
 |   Shell-descendiente   |   O(n*(log^2(n)))    |   O(n*(log^2(n)))    |
 |  inserción-aleatoria   |        O(n^2)        |        O(n^2)        |
-|    Shell-aleatoria     |        O(n^2)        |      O(n^1.09)       |
+|    Shell-aleatoria     |        O(n^2)        |     O(n^log(n))      |
 +------------------------+----------------------+----------------------+
 
 -----Tiempos medidos en bucles-----
@@ -158,8 +151,8 @@ por la división. Esto nos permite etiquetarlos con un asterisco.
 -----Mediciones anómalas-----
 Hemos observado que algunas de las medidas de tiempo se desviaban ligeramente de las demás.
 Por ejemplo, en la tabla del ejercicio 3, en el algoritmo de Shell e inicialización aleatoria, 
-en n=512 el valor para la cota ajustada de t(n)/n**1.09 el resultado no sigue la tendencia del resto
-de datos. También se puede observar en la ordenación por inserción con inicialización ascendiente para n=256.
+en n=512 el valor para la cota ajustada no sigue la tendencia del resto de datos.
+También se puede observar en la ordenación por inserción con inicialización ascendiente para n=256.
 
 También hemos automatizado la detección de tiempos negativos, pero aquí no hemos obtenido ninguno.
 
