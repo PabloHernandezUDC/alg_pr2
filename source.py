@@ -115,32 +115,21 @@ def generar_vector(tipo, n):
 # test(): Realiza pruebas de ordenación con vectores aleatorios e imprime los resultados.
 def test():
     n = 5
+    
+    tabla_test = PrettyTable()
+    tabla_test.field_names =['Tipo de inicialización','Ordenación','Resultado','Éxito o Fracaso']
     vector = aleatorio(n)
-    
-    print(f'\nInicializacion aleatoria')
-    print(vector)
-    
-    print('\nOrdenación por inserción')
     result = ins_sort(vector.copy())
-    print(result)
-    if result == sorted(vector):
-        print('///Éxito.')
-    else:
-        print('---Fracaso.')
+    tabla_test.add_row(['Aleatoria','Inserción',result, '///Éxito' if result == sorted(vector) else '---Fracaso'])
+    
 
-    print('\nInicializacion descendiente')
     vector = sorted(vector, reverse = True)
-    print(vector)
-    
-    print('\nOrdenación Shell')
     result = shell_sort_hibbard(vector.copy())
-    print(result)
-    if result == sorted(vector):
-        print('///Éxito.')
-    else:
-        print('---Fracaso.')
-    
-    print()
+    tabla_test.add_row(['Descendiente','Shell',result,  '///Éxito' if result == sorted(vector) else '---Fracaso'])
+   
+    print(tabla_test)
+   
+
 
 # EJERCICIO Nº2
 '''
@@ -168,7 +157,6 @@ ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.2', 't(n)/n**1.
 
 descIns.title         = 'Ordenacion por inserción con inicialización descendiente'
 descIns.field_names   = ['n', 't(n) (ns)', 't/((n**1.8))', 't/((n**2))', 't/((n**2.2))']
-
 descShell.title       = 'Ordenacion Shell con inicialización descendiente'
 descShell.field_names = ['n', 't(n) (ns)', 't/((1/n)*(log(n)**2))', ' t/((n)*(log(n)**2))', 't/((n)*(log(2*n)))']
 
@@ -181,24 +169,26 @@ randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.09', 't(n)/n**1
 totalStart = time.perf_counter_ns()
 
 # A continuación, se realizan cálculos de tiempo y se llenan las tablas con los resultados...
+
 n = 128
+# Creamos un bucle para multiplicar n por 2 un total de 8 veces
 for i in range(8):
     vector = generar_vector(1, n)
-
+    # Ordenacion por inserción con inicialización ascendiente
     t = calcular_tiempo(ins_sort, vector, 1)
     ascIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.04, t/n**1.08])
-
+    # Ordenacion Shell con inicialización ascendiente
     t = calcular_tiempo(shell_sort_hibbard, vector, 1)
     ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.2, t/n**1.4])
 
     n *= 2
 
-# O(n^2/2) para descIns
 
 n = 128
+# Creamos un bucle para multiplicar n por 2 un total de 8 veces
 for i in range(8):
     vector = generar_vector(2, n)
-
+    # Ordenacion por inserción con inicialización descendiente
     t = calcular_tiempo(ins_sort, vector, 2)
     descIns.add_row([n,
                      (str(t) + '*' if type(t) == float else t),
@@ -206,6 +196,7 @@ for i in range(8):
                      t/((n**2)),
                      t/((n**2.2))])
 
+    # Ordenacion Shell con inicialización descendiente
     t = calcular_tiempo(shell_sort_hibbard, vector, 2)
     descShell.add_row([n,
                        (str(t) + '*' if type(t) == float else t),
@@ -216,12 +207,13 @@ for i in range(8):
     n *= 2
 
 n = 128 
+#  Creamos un bucle para multiplicar n por 2 un total de 8 veces
 for i in range(8):
     vector = generar_vector(3, n)
-
+    # Ordenacion por inserción con inicialización aleatoria
     t = calcular_tiempo(ins_sort, vector, 3)
     randIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**2.0, t/n**2.2])
-
+    # Ordenacion Shell con inicialización aleatoria
     t = calcular_tiempo(shell_sort_hibbard, vector, 3)
     randShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.09, t/n**1.18])
 
@@ -261,11 +253,14 @@ resultados a la complejidad esperada.
 '''
 print("\n\n***Ejercicio 4*** ")
 
+# Con la función PrettyTable creamos la tabla en la que almacenaremos las complejidades
 tabla_complejidades             = PrettyTable()
 
+# Escribimos el título de la tabla y el nombre de las columnas 
 tabla_complejidades.title       = 'Tabla de complejidades'
 tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Complejidad empírica']
 
+# Añadimos filas a la tabla de complejidades para introducir los datos
 tabla_complejidades.add_row(['Ordenacion por inserción con inicialización ascendiente','O(n)','O(n^1.04)'])
 tabla_complejidades.add_row(['Ordenacion Shell con inicialización ascendiente','O(n)','O(n^1.2)'])
 tabla_complejidades.add_row(['Ordenacion por inserción con inicialización descendiente','O((n^2)/2)','O(n^1.99)'])
