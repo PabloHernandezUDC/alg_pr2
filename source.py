@@ -112,24 +112,18 @@ def generar_vector(tipo, n):
 def test():
     n = 5
     # Creamos la tabla table_test
-    table_test = PrettyTable()
+    tabla_test = PrettyTable()
     # Establecemos los nombres de las columnas de la tabla table_test
-    table_test.field_names =['Tipo de inicialización','Ordenación','Resultado','Éxito o Fracaso']
+    tabla_test.field_names =['Tipo de inicialización','Ordenación','Resultado','Éxito o Fracaso']
     # El vector con el que trabajaremos será de longitud 'n'
     vector = aleatorio(n)
+    print(f'Vector original: {vector}')
     result = ins_sort(vector.copy())
-    # Añadimos una primera fila a la tabla table_test
-    table_test.add_row(['Aleatoria','Inserción',result, 'Éxito' if result == sorted(vector) else 'Fracaso'])
+    tabla_test.add_row(['Aleatoria', 'Inserción', result, 'Éxito' if result == sorted(vector) else 'Fracaso'])
     
-    # Añadimos una segunda fila a la tabla table_test
     vector = sorted(vector, reverse = True)
     result = shell_sort_hibbard(vector.copy())
-    table_test.add_row(['Descendiente','Shell',result,  'Éxito' if result == sorted(vector) else 'Fracaso'])
-    
-    #Mostramos la tabla resultante
-    print(table_test)
-   
-
+    tabla_test.add_row(['Descendiente', 'Shell', result,  'Éxito' if result == sorted(vector) else 'Fracaso'])
 
 # EJERCICIO Nº2
 '''
@@ -146,7 +140,6 @@ finish_2 = time.perf_counter_ns()
 # Mostramos el tiempo de ejecución
 print(f'\nTiempo de ejecución del Ejercicio 2: {round((finish_2 - start_2) / (10**7), 2)} centésimas de segundo.')
 print()
-
 
 # EJERCICIO Nº3
 '''
@@ -169,15 +162,14 @@ ascShell.title        = 'Ordenacion Shell con inicialización ascendiente'
 ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/(n)*log(n/2)', 't(n)/n**1.2']
 
 descIns.title         = 'Ordenacion por inserción con inicialización descendiente'
-descIns.field_names   = ['n', 't(n) (ns)', 't/((n**1.8))', 't/((n**2))', 't/((n**2.2))']
+descIns.field_names   = ['n', 't(n) (ns)', 't(n)/((n**1.8))', 't(n)/((n**2))', 't(n)/((n**2.2))']
 descShell.title       = 'Ordenacion Shell con inicialización descendiente'
-descShell.field_names = ['n', 't(n) (ns)', 't/((1/n)*(log(n)**2))', ' t/((n)*(log(n)**2))', 't/((n)*(log(2*n)))']
+descShell.field_names = ['n', 't(n) (ns)', 't(n)/((1/n)*(log(n)**2))', ' t(n)/((n)*(log(n)**2))', 't(n)/((n)*(log(2*n)))']
 
 randIns.title         = 'Ordenacion por inserción con inicialización aleatoria'
 randIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/n**2.2']
 randShell.title       = 'Ordenacion Shell con inicialización aleatoria'
-randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.09', 't(n)/n**1.18']
-
+randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n*(log(n))', 't(n)/n**1.2']
 
 # A continuación, se realizan cálculos de tiempo y se llenan las tablas con los resultados...
 
@@ -225,7 +217,11 @@ for i in range(8):
     randIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**2.0, t/n**2.2])
     # Ordenacion Shell con inicialización aleatoria
     t = calcular_tiempo(shell_sort_hibbard, vector, 3)
-    randShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.09, t/n**1.18])
+    randShell.add_row([n,
+                       (str(t) + '*' if type(t) == float else t),
+                       t/n,
+                       t/(n*(log(n))),
+                       t/n**1.2])
 
     n *= 2
 
@@ -281,7 +277,7 @@ tabla_complejidades.add_row(['Shell-ascendiente'     ,'O(n)'           ,'O(n*(lo
 tabla_complejidades.add_row(['inserción-descendiente','O((n^2)/2)'     ,'O((n^2)/2)'])
 tabla_complejidades.add_row(['Shell-descendiente'    ,'O(n*(log^2(n)))','O(n*(log^2(n)))'])
 tabla_complejidades.add_row(['inserción-aleatoria'   ,'O(n^2)'         ,'O(n^2)'])
-tabla_complejidades.add_row(['Shell-aleatoria'       ,'O(n^2)'         ,'O(n^1.09)'])
+tabla_complejidades.add_row(['Shell-aleatoria'       ,'O(n^2)'         ,'O(n^log(n))'])
 
 print(tabla_complejidades)
 
@@ -294,5 +290,5 @@ print()
 # Calculamos tiempo de ejecución (final)
 totalFinish = time.perf_counter_ns()
 # Mostramos el tiempo de ejecución
-print(f'\n\n\nTiempo total de ejecución del programa entero: {round((totalFinish - totalStart) / (10**9), 2)} segundos.')
+print(f'Tiempo total de ejecución del programa entero: {round((totalFinish - totalStart) / (10**9), 2)}s.')
 print()
