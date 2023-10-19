@@ -117,7 +117,7 @@ def test():
     table_test.field_names =['Tipo de inicialización','Ordenación','Resultado','Éxito o Fracaso']
     # El vector con el que trabajaremos será de longitud 'n'
     vector = aleatorio(n)
-    print(f'Vector original: {vector}')
+    print(f'\nVector original: {vector}')
     result = ins_sort(vector.copy())
     # Añadimos una primera fila a la tabla table_test
     table_test.add_row(['Aleatoria','Inserción',result, 'Éxito' if result == sorted(vector) else 'Fracaso'])
@@ -139,8 +139,6 @@ En este ejercicio, se ejecuta la función test() para realizar pruebas de ordena
 # Calculamos el tiempo de ejecución (inicio Ejercicio 2)
 start_2 = time.perf_counter_ns()
 
-# Calculamos el tiempo de ejecución (inicio Ejercicio 2)
-start_2 = time.perf_counter_ns()
 
 print("\n\n***Ejercicio 2*** ")
 test()
@@ -157,9 +155,6 @@ print()
 En este ejercicio, se realiza un análisis de rendimiento de los algoritmos de ordenación en diferentes configuraciones y se crean tablas
 para registrar los resultados.
 '''
-# Calculamos el tiempo de ejecución (inicio Ejercicio 3)
-start_3 = time.perf_counter_ns()
-
 # Calculamos el tiempo de ejecución (inicio Ejercicio 3)
 start_3 = time.perf_counter_ns()
 
@@ -281,10 +276,6 @@ print(randShell)
 print()
 # Calculamos tiempo de ejecución (final Ejercicio 3)
 finish_3 = time.perf_counter_ns()
-# Calculamos tiempo de ejecución (final Ejercicio 3)
-finish_3 = time.perf_counter_ns()
-# Mostramos el tiempo de ejecución
-print(f'\nTiempo de ejecución del Ejercicio 3: {round((finish_3 - start_3) / (10**9), 2)}s.')
 print(f'\nTiempo de ejecución del Ejercicio 3: {round((finish_3 - start_3) / (10**9), 2)}s.')
 print()
 
@@ -326,5 +317,5 @@ print()
 # Calculamos tiempo de ejecución (final)
 totalFinish = time.perf_counter_ns()
 # Mostramos el tiempo de ejecución
-print(f'Tiempo total de ejecución del programa entero: {round((totalFinish - totalStart) / (10**9), 2)}s.')
+print(f'Tiempo de ejecución del programa entero: {round((totalFinish - totalStart) / (10**9), 2)}s.')
 print()
