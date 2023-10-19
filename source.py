@@ -3,13 +3,15 @@
 
 import random, time
 import numpy as np
+from math import log
 from prettytable import PrettyTable
 
+# Calculamos tiempo de ejecución (inicio)
+totalStart = time.perf_counter_ns()
+
 # EJERCICIO Nº1
-'''
-En este ejercicio, se definen algoritmos de ordenación y funciones auxiliares que se utilizarán posteriormente para analizar su rendimiento.
-'''
-#print("\n\n***Ejercicio 1***\n")
+print("\n\n***Ejercicio 1***\n")
+print('En este ejercicio, se definen algoritmos de ordenación y funciones auxiliares que se utilizarán posteriormente para analizar su rendimiento.')
 
 # hibbard_increments(array_length): Genera una secuencia de incrementos de Hibbard hasta un tamaño dado.
 def hibbard_increments(array_length):
@@ -94,11 +96,9 @@ def calcular_tiempo(func, v, tipo):
 
 # generar_vector(tipo, n): Genera un vector de un tipo específico (ascendente, descendente o aleatorio) de longitud n.
 def generar_vector(tipo, n):
-    
-    # Vector tipo 1: ascendiente
-    # Vector tipo 2: descendiente
+    # Vector tipo 1: ascendente
+    # Vector tipo 2: descendente
     # Vector tipo 3: aleatorio
-    
     if tipo in (1, 2):
         vector = np.arange(0, n)
         if tipo == 2:
@@ -111,45 +111,51 @@ def generar_vector(tipo, n):
 # test(): Realiza pruebas de ordenación con vectores aleatorios e imprime los resultados.
 def test():
     n = 5
+    # Creamos la tabla table_test
+    table_test = PrettyTable()
+    # Establecemos los nombres de las columnas de la tabla table_test
+    table_test.field_names =['Tipo de inicialización','Ordenación','Resultado','Éxito o Fracaso']
+    # El vector con el que trabajaremos será de longitud 'n'
     vector = aleatorio(n)
-    
-    print(f'\nInicializacion aleatoria')
-    print(vector)
-    
-    print('\nOrdenación por inserción')
     result = ins_sort(vector.copy())
-    print(result)
-    if result == sorted(vector):
-        print('///Éxito.')
-    else:
-        print('---Fracaso.')
-
-    print('\nInicializacion descendiente')
+    # Añadimos una primera fila a la tabla table_test
+    table_test.add_row(['Aleatoria','Inserción',result, 'Éxito' if result == sorted(vector) else 'Fracaso'])
+    
+    # Añadimos una segunda fila a la tabla table_test
     vector = sorted(vector, reverse = True)
-    print(vector)
-    
-    print('\nOrdenación Shell')
     result = shell_sort_hibbard(vector.copy())
-    print(result)
-    if result == sorted(vector):
-        print('///Éxito.')
-    else:
-        print('---Fracaso.')
+    table_test.add_row(['descendente','Shell',result,  'Éxito' if result == sorted(vector) else 'Fracaso'])
     
-    print()
+    #Mostramos la tabla resultante
+    print(table_test)
+   
+
 
 # EJERCICIO Nº2
 '''
 En este ejercicio, se ejecuta la función test() para realizar pruebas de ordenación con vectores aleatorios.
 '''
+# Calculamos el tiempo de ejecución (inicio Ejercicio 2)
+start_2 = time.perf_counter_ns()
+
 print("\n\n***Ejercicio 2*** ")
 test()
+
+# Calculamos tiempo de ejecución (final Ejercicio 2)
+finish_2 = time.perf_counter_ns()
+# Mostramos el tiempo de ejecución
+print(f'\nTiempo de ejecución del Ejercicio 2: {round((finish_2 - start_2) / (10**7), 2)} centésimas de segundo.')
+print()
+
 
 # EJERCICIO Nº3
 '''
 En este ejercicio, se realiza un análisis de rendimiento de los algoritmos de ordenación en diferentes configuraciones y se crean tablas
 para registrar los resultados.
 '''
+# Calculamos el tiempo de ejecución (inicio Ejercicio 3)
+start_3 = time.perf_counter_ns()
+
 print("\n\n***Ejercicio 3*** ")
 # Creamos las 6 tablas pedidas
 ascIns,  ascShell  = PrettyTable(), PrettyTable()
@@ -157,61 +163,71 @@ descIns, descShell = PrettyTable(), PrettyTable()
 randIns, randShell = PrettyTable(), PrettyTable()
 
 # Establecemos los nombres de los distintos parámetros de las tablas
-ascIns.title          = 'Ordenacion por inserción con inicialización ascendiente'
+ascIns.title          = 'Ordenacion por inserción con inicialización ascendente'
 ascIns.field_names    = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.04', 't(n)/n**1.08']
-ascShell.title        = 'Ordenacion Shell con inicialización ascendiente'
-ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.2', 't(n)/n**1.4']
-descIns.title         = 'Ordenacion por inserción con inicialización descendiente'
-descIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**1.99', 't(n)/n**2.18']
-descShell.title       = 'Ordenacion Shell con inicialización descendiente'
-descShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.11', 't(n)/n**1.22']
+ascShell.title        = 'Ordenacion Shell con inicialización ascendente'
+ascShell.field_names  = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/(n)*log(n/2)', 't(n)/n**1.2']
+
+descIns.title         = 'Ordenacion por inserción con inicialización descendente'
+descIns.field_names   = ['n', 't(n) (ns)', 't/((n**1.8))', 't/((n**2))', 't/((n**2.2))']
+descShell.title       = 'Ordenacion Shell con inicialización descendente'
+descShell.field_names = ['n', 't(n) (ns)', 't/((1/n)*(log(n)**2))', ' t/((n)*(log(n)**2))', 't/((n)*(log(2*n)))']
+
 randIns.title         = 'Ordenacion por inserción con inicialización aleatoria'
 randIns.field_names   = ['n', 't(n) (ns)', 't(n)/n**1.8', ' t(n)/n**2.0', 't(n)/n**2.2']
 randShell.title       = 'Ordenacion Shell con inicialización aleatoria'
 randShell.field_names = ['n', 't(n) (ns)', 't(n)/n', ' t(n)/n**1.09', 't(n)/n**1.18']
 
-# Calculamos tiempo de ejecución (inicio)
-totalStart = time.perf_counter_ns()
 
 # A continuación, se realizan cálculos de tiempo y se llenan las tablas con los resultados...
+
 n = 128
+# Creamos un bucle para multiplicar n por 2 un total de 8 veces
 for i in range(8):
     vector = generar_vector(1, n)
-
+    # Ordenacion por inserción con inicialización ascendente
     t = calcular_tiempo(ins_sort, vector, 1)
     ascIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.04, t/n**1.08])
-
+    # Ordenacion Shell con inicialización ascendente
     t = calcular_tiempo(shell_sort_hibbard, vector, 1)
-    ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.2, t/n**1.4])
+    ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1, t/((n)*(log(n/2))), t/n**1.2])
 
     n *= 2
 
 n = 128
+# Creamos un bucle para multiplicar n por 2 un total de 8 veces
 for i in range(8):
     vector = generar_vector(2, n)
-
+    # Ordenacion por inserción con inicialización descendente
     t = calcular_tiempo(ins_sort, vector, 2)
-    descIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**1.99, t/n**2.18])
+    descIns.add_row([n,
+                     (str(t) + '*' if type(t) == float else t),
+                     t/((n**1.8)),
+                     t/((n**2)),
+                     t/((n**2.2))])
 
+    # Ordenacion Shell con inicialización descendente
     t = calcular_tiempo(shell_sort_hibbard, vector, 2)
-    descShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.11, t/n**1.22])
+    descShell.add_row([n,
+                       (str(t) + '*' if type(t) == float else t),
+                       t/((1/n)*(log(n)**2)),
+                       t/((n)*(log(n)**2)),
+                       t/((n)*(log(2*n)))])
 
     n *= 2
 
 n = 128 
+#  Creamos un bucle para multiplicar n por 2 un total de 8 veces
 for i in range(8):
     vector = generar_vector(3, n)
-
+    # Ordenacion por inserción con inicialización aleatoria
     t = calcular_tiempo(ins_sort, vector, 3)
     randIns.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1.8, t/n**2.0, t/n**2.2])
-
+    # Ordenacion Shell con inicialización aleatoria
     t = calcular_tiempo(shell_sort_hibbard, vector, 3)
     randShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n, t/n**1.09, t/n**1.18])
 
     n *= 2
-
-# Calculamos tiempo de ejecución (final)
-totalFinish = time.perf_counter_ns()
 
 # Aclaración sobre asteriscos
 print('\nLos datos que se muestran acompañados de un asterisco (*) indican que los tiempos',
@@ -237,9 +253,10 @@ print()
 
 print(randShell)
 print()
-
+# Calculamos tiempo de ejecución (final Ejercicio 3)
+finish_3 = time.perf_counter_ns()
 # Mostramos el tiempo de ejecución
-print(f'Tiempo total de ejecución: {round((totalFinish - totalStart) / (10**9), 2)}s.')
+print(f'\nTiempo de ejecución del Ejercicio 3: {round((finish_3 - start_3) / (10**9), 2)}s.')
 print()
 
 # EJERCICIO Nº4
@@ -247,60 +264,35 @@ print()
 En este ejercicio, se calcula empíricamente la complejidad de los algoritmos de ordenación y se ajustan los
 resultados a la complejidad esperada.
 '''
+# Calculamos el tiempo de ejecución (inicio Ejercicio 4)
+start_4 = time.perf_counter_ns()
+
 print("\n\n***Ejercicio 4*** ")
-# Función para calcular la complejidad empírica
-def calcular_complejidad_empirica(algoritmo, situacion_inicial, n_min, n_max, paso):
-    resultados = []
-    for n in range(n_min, n_max + 1, paso):
-        vector = generar_vector(situacion_inicial, n)
-        tiempo = calcular_tiempo(algoritmo, vector, situacion_inicial)
-        resultados.append((n, tiempo))
-    return resultados
 
-# Función para ajustar los resultados a una complejidad
-def ajustar_complejidad(resultados, complejidad_esperada):
-    n_values = np.array([result[0] for result in resultados])
-    tiempos = np.array([result[1] for result in resultados])
-    # Ajustar los datos a una función de complejidad polinómica
-    coeficientes = np.polyfit(n_values, tiempos, deg=len(complejidad_esperada) - 1)
-    # Imprimir los coeficientes obtenidos
-    print(f"Coeficientes del ajuste: {coeficientes}")
-    # Comparar con la complejidad esperada
-    print(f"Complejidad esperada: {complejidad_esperada}")
-    # Ejemplo de cómo calcular la complejidad ajustada
-    complejidad_ajustada = f"{coeficientes[-1]:.2e}"
-    for i in range(len(coeficientes) - 1):
-        complejidad_ajustada += f" + {coeficientes[i]:.2e} * n^{len(coeficientes) - i - 2}"
-    print(f"Complejidad ajustada: {complejidad_ajustada}")
-    return coeficientes
+# Con la función PrettyTable creamos la tabla en la que almacenaremos las complejidades
+tabla_complejidades = PrettyTable()
 
-# Realizamos los cálculos para Ordenación por Inserción con inicialización ascendente
-print("****Ordenación por Inserción con inicialización ascendente****")
-resultados_ascendente_ins = calcular_complejidad_empirica(ins_sort, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_ascendente_ins, "O(n^2)")
-print("\n\n")
-# Realizamos los cálculos para Ordenación Shell con inicialización ascendente
-print("****Ordenación Shell con inicialización ascendente****")
-resultados_ascendente_shell = calcular_complejidad_empirica(shell_sort_hibbard, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_ascendente_shell, "O(?)")
-print("\n\n")
-# Realizamos los cálculos para Ordenación por Inserción con inicialización descendente
-print("****Ordenación por Inserción con inicialización ascendente****")
-resultados_descendente_ins = calcular_complejidad_empirica(ins_sort, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_descendente_ins, "O(n^2)")
-print("\n\n")
-# Realizamos los cálculos para Ordenación Shell con inicialización descendente
-print("****Ordenación Shell con inicialización ascendente****")
-resultados_descendente_shell = calcular_complejidad_empirica(shell_sort_hibbard, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_descendente_shell, "O(?)")
-print("\n\n")
-# Realizamos los cálculos para Ordenación por Inserción con inicialización aleatoria
-print("****Ordenación por Inserción con inicialización ascendente****")
-resultados_aleatoria_ins = calcular_complejidad_empirica(ins_sort, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_aleatoria_ins, "O(n^2)")
-print("\n\n")
-# Realizamos los cálculos para Ordenación Shell con inicialización aleatoria
-print("****Ordenación Shell con inicialización ascendente****")
-resultados_aleatoria_shell = calcular_complejidad_empirica(shell_sort_hibbard, 1, 10, 1000, 10)
-ajustar_complejidad(resultados_aleatoria_shell, "O(?)")
-print("\n\n")
+# Escribimos el título de la tabla y el nombre de las columnas 
+tabla_complejidades.title       = 'Tabla de complejidades'
+tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Complejidad empírica']
+
+tabla_complejidades.add_row(['inserción-ascendente' ,'O(n)'           ,'O(n^1.04)'])
+tabla_complejidades.add_row(['Shell-ascendente'     ,'O(n)'           ,'O(n*(log(n/2)))'])
+tabla_complejidades.add_row(['inserción-descendente','O((n^2)/2)'     ,'O((n^2)/2)'])
+tabla_complejidades.add_row(['Shell-descendente'    ,'O(n*(log^2(n)))','O(n*(log^2(n)))'])
+tabla_complejidades.add_row(['inserción-aleatoria'   ,'O(n^2)'         ,'O(n^2)'])
+tabla_complejidades.add_row(['Shell-aleatoria'       ,'O(n^2)'         ,'O(n^1.09)'])
+
+print(tabla_complejidades)
+
+# Calculamos tiempo de ejecución (final Ejercicio 4)
+finish_4 = time.perf_counter_ns()
+# Mostramos el tiempo de ejecución
+print(f'\nTiempo de ejecución del Ejercicio 4: {round((finish_4 - start_4) / (10**7), 2)} centésimas de segundo.')
+print()
+
+# Calculamos tiempo de ejecución (final)
+totalFinish = time.perf_counter_ns()
+# Mostramos el tiempo de ejecución
+print(f'\n\n\nTiempo total de ejecución del programa entero: {round((totalFinish - totalStart) / (10**9), 2)} segundos.')
+print()
