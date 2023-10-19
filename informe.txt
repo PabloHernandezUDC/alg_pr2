@@ -22,19 +22,14 @@ un test, contenido en la función test(), que verifica que los dos proporcionen 
 si se les pasa vectores generados de manera aleatoria. A continuación, adjuntamos un ejemplo de testeo. 
 
 ***Ejercicio 2***
-Inicializacion aleatoria
-[-5, -3, -3, 5, 3]
++------------------------+------------+--------------------+-----------------+
+| Tipo de inicialización | Ordenación |     Resultado      | Éxito o Fracaso |
++------------------------+------------+--------------------+-----------------+
+|       Aleatoria        | Inserción  | [-5, -4, -1, 1, 2] |      Éxito      |
+|      descendente       |   Shell    | [-5, -4, -1, 1, 2] |      Éxito      |
++------------------------+------------+--------------------+-----------------+
 
-Ordenación por inserción
-[-5, -3, -3, 3, 5]
-///Éxito.
-
-Inicializacion descendiente
-[5, 3, -3, -3, -5]
-
-Ordenación Shell
-[-5, -3, -3, 3, 5]
-///Éxito.
+Tiempo de ejecución del Ejercicio 2: 0.27 centésimas de segundo.
 
 
 -----Ejercicio 3-----
@@ -44,6 +39,12 @@ iniciales: el vector está en orden ascendente,
            el vector está desordenado (inicialización aleatoria).
 La primera columna representa n, la segunda el tiempo en nanosegundos, la tercera la cota subestimada, la cuarta ajustada y la quinta sobreestimada.
 
+
+***Ejercicio 3***
+
+Los datos que se muestran acompañados de un asterisco (*) indican que los tiempos
+fueron medidos de nuevo ya que no cumplían con el umbral de confianza de 500 microsegundos.
+El bucle que calcula la media se iteró 100 veces.
 
 +-------------------------------------------------------------------------------+
 |            Ordenacion por inserción con inicialización ascendiente            |
@@ -135,19 +136,29 @@ La primera columna representa n, la segunda el tiempo en nanosegundos, la tercer
 | 16384 |  25706700 | 1569.012451171875 |  655.131671703163  | 273.5462723371124  |
 +-------+-----------+-------------------+--------------------+--------------------+
 
+Tiempo de ejecución del Ejercicio 3: 42.53s.
+
+
 -----Ejercicio 4-----
-+----------------------------------------------------------------------+
-|                        Tabla de complejidades                        |
-+------------------------+----------------------+----------------------+
-|      Nombre tabla      | Complejidad esperada | Complejidad empírica |
-+------------------------+----------------------+----------------------+
-| inserción-ascendiente  |         O(n)         |      O(n^1.04)       |
-|   Shell-ascendiente    |         O(n)         |   O(n*(log(n/2)))    |
-| inserción-descendiente |      O((n^2)/2)      |      O((n^2)/2)      |
-|   Shell-descendiente   |   O(n*(log^2(n)))    |   O(n*(log^2(n)))    |
-|  inserción-aleatoria   |        O(n^2)        |        O(n^2)        |
-|    Shell-aleatoria     |        O(n^2)        |      O(n^1.09)       |
-+------------------------+----------------------+----------------------+
+
+
+***Ejercicio 4***
++---------------------------------------------------------------------+
+|                        Tabla de complejidades                       |
++-----------------------+----------------------+----------------------+
+|      Nombre tabla     | Complejidad esperada | Complejidad empírica |
++-----------------------+----------------------+----------------------+
+|  inserción-ascendente |         O(n)         |      O(n^1.04)       |
+|    Shell-ascendente   |         O(n)         |   O(n*(log(n/2)))    |
+| inserción-descendente |      O((n^2)/2)      |      O((n^2)/2)      |
+|   Shell-descendente   |   O(n*(log^2(n)))    |   O(n*(log^2(n)))    |
+|  inserción-aleatoria  |        O(n^2)        |        O(n^2)        |
+|    Shell-aleatoria    |        O(n^2)        |      O(n^1.09)       |
++-----------------------+----------------------+----------------------+
+
+Tiempo de ejecución del Ejercicio 4: 0.23 centésimas de segundo.
+
+
 
 -----Tiempos medidos en bucles-----
 En el ejercicio 3 hay varias medidas de tiempo junto a las que aparece un asterisco. Como se enuncia al ejecutar el código, el asterisco
