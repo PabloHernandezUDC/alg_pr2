@@ -200,7 +200,6 @@ for i in range(8):
     # Ordenacion Shell con inicialización ascendente
     t = calcular_tiempo(shell_sort_hibbard, vector, 1)
     ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1, t/((n)*(log(n/2))), t/n**1.2])
-    ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1, t/((n)*(log(n/2))), t/n**1.2])
 
     n *= 2
 
@@ -216,19 +215,9 @@ for i in range(8):
                      t/((n**1.8)),
                      t/((n**2)),
                      t/((n**2.2))])
-    descIns.add_row([n,
-                     (str(t) + '*' if type(t) == float else t),
-                     t/((n**1.8)),
-                     t/((n**2)),
-                     t/((n**2.2))])
 
     # Ordenacion Shell con inicialización descendente
     t = calcular_tiempo(shell_sort_hibbard, vector, 2)
-    descShell.add_row([n,
-                       (str(t) + '*' if type(t) == float else t),
-                       t/((1/n)*(log(n)**2)),
-                       t/((n)*(log(n)**2)),
-                       t/((n)*(log(2*n)))])
     descShell.add_row([n,
                        (str(t) + '*' if type(t) == float else t),
                        t/((1/n)*(log(n)**2)),
@@ -303,7 +292,7 @@ tabla_complejidades = PrettyTable()
 
 # Escribimos el título de la tabla y el nombre de las columnas 
 tabla_complejidades.title       = 'Tabla de complejidades'
-tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Complejidad empírica','Constante a la que tiende la cota ajustada']
+tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Complejidad empírica','Constante a la que tiende']
 
 tabla_complejidades.add_row(['inserción-ascendiente' ,'O(n)'           ,'O(n^1.04)'      ,'144'])
 tabla_complejidades.add_row(['Shell-ascendiente'     ,'O(n)'           ,'O(n*(log(n/2)))','300'])
