@@ -297,14 +297,14 @@ tabla_complejidades = PrettyTable()
 
 # Escribimos el título de la tabla y el nombre de las columnas 
 tabla_complejidades.title       = 'Tabla de complejidades'
-tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Complejidad empírica']
+tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Complejidad empírica','Constante a la que tiende la cota ajustada']
 
-tabla_complejidades.add_row(['inserción-ascendiente' ,'O(n)'           ,'O(n^1.04)'])
-tabla_complejidades.add_row(['Shell-ascendiente'     ,'O(n)'           ,'O(n*(log(n/2)))'])
-tabla_complejidades.add_row(['inserción-descendiente','O((n^2)/2)'     ,'O((n^2)/2)'])
-tabla_complejidades.add_row(['Shell-descendiente'    ,'O(n*(log^2(n)))','O(n*(log^2(n)))'])
-tabla_complejidades.add_row(['inserción-aleatoria'   ,'O(n^2)'         ,'O(n^2)'])
-tabla_complejidades.add_row(['Shell-aleatoria'       ,'O(n^2)'         ,'O(n^log(n))'])
+tabla_complejidades.add_row(['inserción-ascendiente' ,'O(n)'           ,'O(n^1.04)'      ,'144'])
+tabla_complejidades.add_row(['Shell-ascendiente'     ,'O(n)'           ,'O(n*(log(n/2)))','300'])
+tabla_complejidades.add_row(['inserción-descendiente','O((n^2)/2)'     ,'O((n^2)/2)'     ,'102'])
+tabla_complejidades.add_row(['Shell-descendiente'    ,'O(n*(log^2(n)))','O(n*(log^2(n)))','30'])
+tabla_complejidades.add_row(['inserción-aleatoria'   ,'O(n^2)'         ,'O(n^2)'         ,'19'])
+tabla_complejidades.add_row(['Shell-aleatoria'       ,'O(n^2)'         ,'O(n^log(n))'    ,'155'])
 
 print(tabla_complejidades)
 
