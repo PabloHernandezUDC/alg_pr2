@@ -303,7 +303,7 @@ tabla_complejidades = PrettyTable()
 
 # Escribimos el título de la tabla y el nombre de las columnas 
 tabla_complejidades.title       = 'Tabla de complejidades'
-tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Complejidad empírica','Constante a la que tiende la cota ajustada']
+tabla_complejidades.field_names = ['Nombre tabla' ,'Complejidad esperada', 'Complejidad empírica','Constante a la que tiende']
 
 tabla_complejidades.add_row(['inserción-ascendiente' ,'O(n)'           ,'O(n^1.04)'      ,'144'])
 tabla_complejidades.add_row(['Shell-ascendiente'     ,'O(n)'           ,'O(n*(log(n/2)))','300'])
