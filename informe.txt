@@ -152,7 +152,7 @@ El bucle que calcula la media se iteró 100 veces.
 | inserción-descendente |      O((n^2)/2)      |      O((n^2)/2)      |
 |   Shell-descendente   |   O(n*(log^2(n)))    |   O(n*(log^2(n)))    |
 |  inserción-aleatoria  |        O(n^2)        |        O(n^2)        |
-|    Shell-aleatoria    |        O(n^2)        |      O(n^log(n))       |
+|    Shell-aleatoria    |        O(n^2)        |      O(n^log(n))     |
 +-----------------------+----------------------+----------------------+
 
 Tiempo de ejecución del Ejercicio 4: 0.23 centésimas de segundo.
