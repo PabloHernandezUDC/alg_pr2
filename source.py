@@ -120,12 +120,18 @@ def test():
     print(f'\nVector original: {vector}')
     result = ins_sort(vector.copy())
     # Añadimos una primera fila a la tabla table_test
-    table_test.add_row(['Aleatoria','Inserción',result, 'Éxito' if result == sorted(vector) else 'Fracaso'])
+    table_test.add_row(['Aleatoria',
+                        'Inserción',
+                        result,
+                        'Éxito' if result == sorted(vector) else 'Fracaso'])
     
     # Añadimos una segunda fila a la tabla table_test
     vector = sorted(vector, reverse = True)
     result = shell_sort_hibbard(vector.copy())
-    table_test.add_row(['descendente','Shell',result,  'Éxito' if result == sorted(vector) else 'Fracaso'])
+    table_test.add_row(['descendente',
+                        'Shell',
+                        result,
+                        'Éxito' if result == sorted(vector) else 'Fracaso'])
     
     #Mostramos la tabla resultante
     print(table_test)
