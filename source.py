@@ -200,7 +200,6 @@ for i in range(8):
     # Ordenacion Shell con inicialización ascendente
     t = calcular_tiempo(shell_sort_hibbard, vector, 1)
     ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1, t/((n)*(log(n/2))), t/n**1.2])
-    ascShell.add_row([n, (str(t) + '*' if type(t) == float else t), t/n**1, t/((n)*(log(n/2))), t/n**1.2])
 
     n *= 2
 
@@ -216,19 +215,9 @@ for i in range(8):
                      t/((n**1.8)),
                      t/((n**2)),
                      t/((n**2.2))])
-    descIns.add_row([n,
-                     (str(t) + '*' if type(t) == float else t),
-                     t/((n**1.8)),
-                     t/((n**2)),
-                     t/((n**2.2))])
 
     # Ordenacion Shell con inicialización descendente
     t = calcular_tiempo(shell_sort_hibbard, vector, 2)
-    descShell.add_row([n,
-                       (str(t) + '*' if type(t) == float else t),
-                       t/((1/n)*(log(n)**2)),
-                       t/((n)*(log(n)**2)),
-                       t/((n)*(log(2*n)))])
     descShell.add_row([n,
                        (str(t) + '*' if type(t) == float else t),
                        t/((1/n)*(log(n)**2)),
